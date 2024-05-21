@@ -25,9 +25,4 @@ class Shilin_Banks(Banks):
         self.__title = "Taipei Bank - Shilin Branch"
     
     def bank_title(self):
-<<<<<<< HEAD
         return self.__title
-=======
-        return self.__title
-
->>>>>>> 7b065b851c7b129bc698f9bedb770ca6d5557563

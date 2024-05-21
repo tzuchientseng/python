@@ -1,5 +1,12 @@
 import numpy as np
-from stat_tables import StatTables
+import sys
+import os
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+sys.path.append(current_dir)
+
+from StatTables import StatTables
 
 class DesData:
     def __init__(self, data=None):
@@ -30,67 +37,19 @@ class DesData:
             return float('nan')  # Multiple modes
         return values[max_count_index]
 
-    def ml_bound(self, confidence_level):
-        avg = self.mean()
-        std_dev = self.samp_dev()
-        n = len(self.data)
+    def bound(self, confidence_level, sigma=None, mean=None, sample=None, upper=False):
+        avg = self.mean() if mean is None else mean
+        std_dev = self.samp_dev() if sigma is None else sigma
+        n = len(self.data) if sample is None else sample
 
         if n > 30:
             z = StatTables.get_z_value(confidence_level)
-            return avg - (z * (std_dev / np.sqrt(n)))
+            margin_of_error = z * (std_dev / np.sqrt(n))
         else:
             t = StatTables.get_t_value(confidence_level, n - 1)
-            return avg - (t * (std_dev / np.sqrt(n)))
+            margin_of_error = t * (std_dev / np.sqrt(n))
 
-    def ml_bound_with_sigma(self, confidence_level, sigma):
-        avg = self.mean()
-        n = len(self.data)
-
-        if n > 30:
-            z = StatTables.get_z_value(confidence_level)
-            return avg - (z * (sigma / np.sqrt(n)))
-        else:
-            t = StatTables.get_t_value(confidence_level, n - 1)
-            return avg - (t * (sigma / np.sqrt(n)))
-
-    def ml_bound_full(self, confidence_level, sigma, mean, sample):
-        if sample > 30:
-            z = StatTables.get_z_value(confidence_level)
-            return mean - (z * (sigma / np.sqrt(sample)))
-        else:
-            t = StatTables.get_t_value(confidence_level, sample - 1)
-            return mean - (t * (sigma / np.sqrt(sample)))
-
-    def mu_bound(self, confidence_level):
-        avg = self.mean()
-        std_dev = self.samp_dev()
-        n = len(self.data)
-
-        if n > 30:
-            z = StatTables.get_z_value(confidence_level)
-            return avg + (z * (std_dev / np.sqrt(n)))
-        else:
-            t = StatTables.get_t_value(confidence_level, n - 1)
-            return avg + (t * (std_dev / np.sqrt(n)))
-
-    def mu_bound_with_sigma(self, confidence_level, sigma):
-        avg = self.mean()
-        n = len(self.data)
-
-        if n > 30:
-            z = StatTables.get_z_value(confidence_level)
-            return avg + (z * (sigma / np.sqrt(n)))
-        else:
-            t = StatTables.get_t_value(confidence_level, n - 1)
-            return avg + (t * (sigma / np.sqrt(n)))
-
-    def mu_bound_full(self, confidence_level, sigma, mean, sample):
-        if sample > 30:
-            z = StatTables.get_z_value(confidence_level)
-            return mean + (z * (sigma / np.sqrt(sample)))
-        else:
-            t = StatTables.get_t_value(confidence_level, sample - 1)
-            return mean + (t * (sigma / np.sqrt(sample)))
+        return avg + margin_of_error if upper else avg - margin_of_error
 
     def p_ci(self, confidence_level, successes, trials):
         if trials == 0:

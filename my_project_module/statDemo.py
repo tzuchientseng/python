@@ -1,14 +1,4 @@
-import numpy as np
-import sys
-import os
-
-# Ensure the current directory is in the system path for module imports
-current_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(current_dir)
-
-# Import the required modules
-from DesData import DesData
-
+from statitic import DesData  # Import the DesData class
 class StatisticsDemo:
 
     @staticmethod
@@ -18,7 +8,7 @@ class StatisticsDemo:
 
         # Initialize the data
         data = [148, 155, 126, 117, 124, 136, 141, 133, 129, 146]
-        # Create an instance of DescriptiveStatistics with the data
+        # Create an instance of DesData with the data
         descriptive_stats = DesData(data)
         
         # Print basic descriptive statistics
@@ -52,11 +42,11 @@ class StatisticsDemo:
         # Example data for Bernoulli trials
         successes = 6
         trials = 150
-        confidence_level_p = 0.99  # 使用不同的 confidence_level
+        confidence_level_p = 0.99  # Using a different confidence_level
 
         try:
             interval = descriptive_stats.p_ci(confidence_level_p, successes, trials)
-            # Print the confidence interval using the actual `confidenceLevel`
+            # Print the confidence interval using the actual `confidence_level_p`
             print("{:.1f}% confidence interval for Bernoulli parameter p: [{:.3f}, {:.3f}]".format(confidence_level_p * 100, interval[0], interval[1]))
         except ValueError as e:
             print("Error:", e)
@@ -77,3 +67,4 @@ class StatisticsDemo:
 
 if __name__ == "__main__":
     StatisticsDemo.main()
+

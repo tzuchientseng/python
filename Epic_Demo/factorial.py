@@ -16,6 +16,16 @@ public class Factorial {
     }
 } 
 """
+"""
+#recusive
+def fact(x):
+    if x == 1:
+        return 1
+    else:
+        return x * fact(x-1)
+
+print(fact(100))
+"""
 # 1000!
 from functools import reduce
-print(reduce(lambda x, y: (x * y), range(1, 1000))) # Time complexity: O(n), Space complexity O(1)。
+print(reduce(lambda x, y: (x * y), range(1, 1001))) # Time complexity: O(n), Space complexity O(1)。

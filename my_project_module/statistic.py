@@ -1,6 +1,4 @@
 import numpy as np
-from scipy import stats
-
 class StatTables:
     z_table = {
         80.0: 1.28,
@@ -235,7 +233,7 @@ class DesData:
             return float('nan')  # Multiple modes
         return values[max_count_index]
 
-    def bound(self, confidence_level, sigma=None, mean=None, sample=None, upper=False):
+    def bound(self, confidence_level, sigma=None, mean=None, sample=None):
         avg = self.mean() if mean is None else mean
         std_dev = self.samp_dev() if sigma is None else sigma
         n = len(self.data) if sample is None else sample
@@ -247,7 +245,11 @@ class DesData:
             t = StatTables.get_t_value(confidence_level, n - 1)
             margin_of_error = t * (std_dev / np.sqrt(n))
 
-        return avg + margin_of_error if upper else avg - margin_of_error
+        lower_bound = avg - margin_of_error
+        upper_bound = avg + margin_of_error
+
+        return lower_bound, upper_bound
+
 
     def p_ci(self, confidence_level, successes, trials):
         if trials == 0:

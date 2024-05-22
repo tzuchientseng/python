@@ -6,9 +6,9 @@ sys.path.append('module')
 # demo 1
 print("-"*7, 'demo1-import function(直接import 模組名稱)', "-"*7)
 
-import makefood as object
-from makefood import make_icecream, make_drink
-from makefood import *
+import module.makefood as object
+from module.makefood import make_icecream, make_drink
+from module.makefood import *
 
 
 make_icecream("草莓醬")

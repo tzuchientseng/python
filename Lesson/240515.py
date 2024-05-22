@@ -23,7 +23,7 @@ for item in a:
     print(item)
 print("總金額:", b)
 
-print("-"*7, 'demo1', "-"*7)
+print("-"*7, 'demo', "-"*7)
 # 定義集合 A, B, C
 A = {n for n in range(1, 21)}
 B = {n for n in range(1, 21) if n % 2 == 0}
@@ -56,7 +56,7 @@ lcm_abc = lcm(lcm_ab, c)
 print(f"12, 27, 10 的最小公倍數為: {lcm_abc}")
 
 
-print("-"*7, 'demo3', "-"*7)
+print("-"*7, 'demo', "-"*7)
 def absolute(x):
     return x if x >= 0 else -x
 x = input("Input number: \n")
@@ -76,7 +76,7 @@ comp(x = 3, y = 7)
 @author: User
 """
 
-print("-"*7, 'demo4', "-"*7)
+print("-"*7, 'demo', "-"*7)
 def comp(x, y):  # 顯示 x 和 y 生成比大小
     z = x - y
     return z  # comp(x, y) = z
@@ -95,7 +95,7 @@ print('相減的結果是', comp(a, b)) #輸出None
 
 # ------------------------------------------
 # ------------------------------------------
-print("-"*7, 'demo5', "-"*7)
+print("-"*7, 'demo', "-"*7)
 
 from enum import Enum, auto
 
@@ -153,7 +153,7 @@ if __name__ == "__main__":
     main()
 
 
-print("-"*7, 'demo5', "-"*7)
+print("-"*7, 'demo', "-"*7)
 
 import time
 def times(x):

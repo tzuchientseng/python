@@ -1,10 +1,12 @@
-from statitic import DesData  # Import the DesData class
+import numpy as np
+from scipy import stats
+from my_project_module.statistic import DesData  # Import the DesData class
 class StatisticsDemo:
 
     @staticmethod
     def main():
         # Specify the desired confidence level for descriptive statistics
-        confidence_level = 0.90  # 90% confidence level
+        confidence_level = 90  # 90% confidence level
 
         # Initialize the data
         data = [148, 155, 126, 117, 124, 136, 141, 133, 129, 146]
@@ -19,40 +21,36 @@ class StatisticsDemo:
         print("Mode:", descriptive_stats.mode())
         print("\nVariance (sample formula):", descriptive_stats.samp_vari())
         print("Standard Deviation (sample formula):", descriptive_stats.samp_dev())
-
         print("-----------------Descriptive Statistics (Estimate \u03BC)-----------------")
         # Estimate Mean (Sigma unknown)
         try:
-            lower_bound_unknown_sigma = descriptive_stats.bound(confidence_level)
-            upper_bound_unknown_sigma = descriptive_stats.bound(confidence_level, upper=True)
-            print("The mean (\u03BC) estimate (\u03C3 unknown) {}% Confidence Interval: [{:.2f}, {:.2f}]".format(confidence_level * 100, lower_bound_unknown_sigma, upper_bound_unknown_sigma))
+            bound = descriptive_stats.bound(confidence_level)
+            print("The mean (\u03BC) estimate (\u03C3 unknown) {}% Confidence Interval: [{:.2f}, {:.2f}]".format(confidence_level, bound[0], bound[1]))
         except ValueError as e:
             print("Error calculating confidence interval with unknown sigma:", e)
-
         # Estimate Mean (Sigma known)
-        sigma = 11.27
         try:
-            lower_bound_known_sigma = descriptive_stats.bound(confidence_level, sigma=sigma)
-            upper_bound_known_sigma = descriptive_stats.bound(confidence_level, sigma=sigma, upper=True)
-            print("The mean (\u03BC) estimate (\u03C3 known) {}% Confidence Interval: [{:.2f}, {:.2f}]".format(confidence_level * 100, lower_bound_known_sigma, upper_bound_known_sigma))
+            bound2 = descriptive_stats.bound(confidence_level, 11,27)
+            print("The mean (\u03BC) estimate (\u03C3 known) {}% Confidence Interval: [{:.2f}, {:.2f}]".format(confidence_level, bound2[0], bound2[1]))
         except ValueError as e:
             print("Error calculating confidence interval with known sigma:", e)
+
 
         print("\n-----------------Descriptive Statistics (Estimate p)-----------------")
         # Example data for Bernoulli trials
         successes = 6
         trials = 150
-        confidence_level_p = 0.99  # Using a different confidence_level
+        confidence_level_p = 99  # Using a different confidence_level
 
         try:
             interval = descriptive_stats.p_ci(confidence_level_p, successes, trials)
             # Print the confidence interval using the actual `confidence_level_p`
-            print("{:.1f}% confidence interval for Bernoulli parameter p: [{:.3f}, {:.3f}]".format(confidence_level_p * 100, interval[0], interval[1]))
+            print("{:.1f}% confidence interval for Bernoulli parameter p: [{:.3f}, {:.3f}]".format(confidence_level_p, interval[0], interval[1]))
         except ValueError as e:
             print("Error:", e)
 
         print("\n-----------------Descriptive Statistics (Estimate Sigma)-----------------")
-        confidence_level_sigma = 0.98  # e.g., 98% confidence level
+        confidence_level_sigma = 98  # e.g., 98% confidence level
         data2 = [113, 106, 102, 104, 112, 115, 103, 109]
         descriptive_stats2 = DesData(data2)
         try:

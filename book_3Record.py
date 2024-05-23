@@ -4,7 +4,7 @@ sys.path.append('module')
 
 
 # demo 1
-print("-"*7, 'demo1-import function(直接import 模組名稱)', "-"*7)
+print("----------------------------------------", 'demo1-import function(直接import 模組名稱)', "-"*40)
 
 import module.makefood as object
 from module.makefood import make_icecream, make_drink
@@ -18,7 +18,7 @@ make_drink("large", "Coke")
 object.make_drink("large", "Coke")
 
 # demo 2
-print("-"*7, 'demo2-import classes(from 檔名 import 類別名稱)', "-"*7)
+print("----------------------------------------", 'demo2-import classes(from 檔名 import 類別名稱)', "-"*40)
 from bank import *
 jamesbank = Banks('James')
 print("James's bank = ", jamesbank.bank_title())
@@ -29,7 +29,7 @@ hungbank = Shilin_Banks('Hung')
 print("Hung's bank = ", hungbank.bank_title())
 
 # demo 3
-print("-"*7, 'demo3-import module name(import 檔名 使用模組名稱.類別名稱)', "-"*7)
+print("----------------------------------------", 'demo3-import module name(import 檔名 使用模組名稱.類別名稱)', "-"*40)
 import bank
 jamesbank = bank.Banks('James')
 print("James's bank = ", jamesbank.bank_title())
@@ -40,7 +40,7 @@ print("Hung's bank = ", hungbank.bank_title())
 
 # demo 4
 import random
-print("-"*7, 'demo4-Random', "-"*7)
+print("----------------------------------------", 'demo4-Random', "-"*40)
 min, max = 1, 10
 ans = random.randint(min, max)
 while True: 
@@ -53,25 +53,25 @@ while True:
     else: 
         print("Smaller~")
 
-print("-"*4, 'Random(0~1)', "-"*4)
+print("----------------------------------------", 'demo4-Random(0~1)', "-"*40)
 for i in range(5):
     print(random.random())
 
-print("-"*4, 'Uniform', "-"*4)
+print("----------------------------------------", 'demo-uniform', "-"*40)
 for i in range(5):
     print("Uniform(1, 10) : ", random.uniform(1, 10))
 
-print("-"*4, 'Choice', "-"*4)
+print("----------------------------------------", 'demo-Choice', "-"*40)
 fruits = ['蘋果', '香蕉', '西瓜', '水蜜桃', '百香果']
 print(random.choice(fruits))
 
-print("-"*4, 'Shuffle', "-"*4)
+print("----------------------------------------", 'demo-Shuffle', "-"*40)
 porker = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
 for i in range(3):
     random.shuffle(porker)
     print(porker)
 import random
-print("-"*4, 'Sample', "-"*4)
+print("----------------------------------------", 'sample', "-"*40)
 lotterys = random.sample(range(1, 50), 7)
 specialNum = lotterys.pop()
 print("第XX期大樂透號碼:", end=" ")
@@ -79,12 +79,12 @@ for lottery in sorted(lotterys):
     print(lottery,end=" ")
 print(f"特別號:{specialNum}")
 
-print("-"*4, 'Seed', "-"*4)
+print("----------------------------------------", 'seed', "-"*40)
 random.seed(5)
 for i in range(5):
     print(random.random())
 
-print("-"*4, 'Time', "-"*4)
+print("----------------------------------------", 'Time', "-"*40)
 import time
 import random
 import time, random #不符合PEP8風格 (Python Enhance Proposals)
@@ -104,13 +104,13 @@ while True:
         print("Smaller!")
     yourNum = int(input("Guess the number between 1 to 10\n"))
 
-print("-"*4, 'Time(ASCII time)', "-"*4)
+print("----------------------------------------", 'Time(ASCII time)', "-"*40)
 import time
 print(time.asctime())
 print(time.ctime())
 print(time.ctime(1700000))
 
-print("-"*4, 'Process()', "-"*4)
+print("----------------------------------------", 'Process()', "-"*40)
 import time 
 x = 1000_000
 pi = 0
@@ -121,25 +121,25 @@ for i in range(1, x+1):
         e_time = time.process_time()
         print(f"當 {i=:7d}, 時 PI={pi:8.7}, 所花的時間={e_time}")
 
-print("-"*4, 'stdin/stdout', "-"*4)
+print("----------------------------------------", 'stdin/stdou', "-"*40)
 import sys
 print("Enter the String(Enter to submit)")
 msg = sys.stdin.readline()
 print(msg)
 sys.stdout.write("I like python.")
 
-print("-"*4, 'Path', "-"*4)
+print("----------------------------------------", 'Path', "-"*40)
 import sys
 for dirpath in sys.path:
     print(dirpath)
 
-print("-"*4, 'Get Version', "-"*4)
+print("----------------------------------------", 'Get Version', "-"*40)
 print("Python --verion: ", sys.version)
 print("Python --verion: ", sys.version_info)
 print(sys.getwindowsversion)
 print(sys.executable)
 
-print("-"*4, 'Keyword', "-"*4)
+print("----------------------------------------", 'Keyword', "-"*40)
 import keyword
 print(keyword.kwlist)
 
@@ -147,21 +147,21 @@ keywordLists = ['as', 'while', 'break', 'sse', 'Python']
 for x in keywordLists:
     print(f"{x:>8s} {keyword.iskeyword(x)}")
 
-print("-"*4, 'Calendar', "-"*4)
+print("----------------------------------------", 'Calendar', "-"*40)
 import calendar
 print("2024是否為閏年", calendar.isleap(2024))
-print("幾個閏年(2000,2024))", calendar.leapdays(2000, 2024))
+print("幾個閏年(2000,2024)", calendar.leapdays(2000, 2024))
 print(calendar.month(2024,5))
 print(calendar.calendar(2024))
 
-# print("-"*7, 'Collections', "-"*7)
+print("----------------------------------------", 'Collections', "-"*40)
 from collections import defaultdict
 fruits = defaultdict(lambda : 10)
 fruits["Apple"] = 20
 fruits["Orange"]
 print(fruits)
 
-# print("-"*7, 'Counter()', "-"*7)
+print("----------------------------------------", 'Counter()', "-"*40)
 from collections import Counter
 
 fruits = ["Apple", "Orange", "Apple"]
@@ -178,7 +178,7 @@ print("-", Counter(fruits) - Counter(fruits2))
 print("&", Counter(fruits) & Counter(fruits2)) #Don't add the count
 print("|", Counter(fruits) | Counter(fruits2))
 
-print("-"*7, 'Palindrome', "-"*7)
+print("----------------------------------------", 'Palindrome', "-"*40)
 from collections import deque
 def palindrome(word):
     wd = deque(word)
@@ -191,7 +191,7 @@ print(palindrome("abccba"))
 print(palindrome("radar"))
 print(palindrome("python"))
 
-print("-"*7, "pprint", "-"*7)
+print("----------------------------------------", 'pprint', "-"*40)
 import sys
 from pprint import pprint
 print("print:")
@@ -199,7 +199,7 @@ print(sys.path)
 print("pprint:")
 pprint(sys.path)
 
-print("-"*7, "itertools", "-"*7)
+print("----------------------------------------", 'itertools', "-"*40)
 import itertools
 
 from numpy import double
@@ -218,7 +218,7 @@ for i in itertools.accumulate((1,2,3,4,5),mul):
 for i in itertools.accumulate((1,2,3,4,5), (lambda x, y: x * y)):
     print(i)
 
-print("-"*7, "Combinations", "-"*7)
+print("----------------------------------------", 'Combinations', "-"*40)
 n = ['a', 'b', 'c']
 r = 2
 comb = itertools.combinations(n, r)
@@ -238,4 +238,3 @@ for gene in itertools.combinations(x, r):
     counter += 1
 print("單眼皮機率: %5.3f" % (single / counter))
 print("雙眼皮機率: %5.3f" % (double / counter))
-print("-"*7, 'demo4', 7)

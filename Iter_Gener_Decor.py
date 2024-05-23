@@ -4,7 +4,7 @@ Generator
 Decorator
 """
 # demo 1
-print("-"*7, 'demo1-iterator', "-"*7)
+print("----------------------------------------", 'demo1-iterator', "-"*40)
 my_list = [1, 3, 5]
 my_iterator = iter(my_list)
 print("-------", type(my_iterator), "-------")
@@ -14,7 +14,7 @@ print(next(my_iterator))
 print(next(my_iterator))
 
 # demo 2
-print("-"*7, 'demo2-Function-Generator yield iterator)', "-"*7)
+print("----------------------------------------", 'demo2-Function-Generator yield iterator', "-"*40)
 def iter_data():
     x = 10
     yield x
@@ -41,7 +41,7 @@ print(next(_iter))
 """
 
 # demo 3
-print("-"*7, 'demo3_1-List_Square with list', "-"*7)
+print("----------------------------------------", 'demo3_1-List_Square with listr', "-"*40)
 def list_square(n):
     mylist = []
     for data in range(1, n+1):
@@ -53,7 +53,7 @@ print("-"*4, 'demo3_1-List_Square with list(lambda)', "-"*4)
 list_square = lambda n: [data ** 2 for data in range(1, n+1)] #list[]
 print(list_square(5))  
 
-print("-"*7, 'demo3_2-List_Square with generator', "-"*7)
+print("----------------------------------------", 'demo3_2-List_Square with generatorr', "-"*40)
 
 def iter_square(n):
     for data in range(1, n+1):
@@ -62,7 +62,7 @@ myiter = iter_square(5)
 for data in myiter: 
     print(data, end=" ")
 print()
-print("-"*4, 'demo3_2-List_Square with generator(lambda)', "-"*4)
+print("----------------------------------------", 'demo3_2-List_Square with generator(lambda)', "-"*40)
 # ----or---- 
 iter_square = lambda n: (data ** 2 for data in range(1, n + 1)) #iter()
 myiter = iter_square(5)
@@ -71,7 +71,7 @@ for data in myiter:
 print()
 
 # demo 4
-print("-"*7, 'demo4-myRange()', "-"*7)
+print("----------------------------------------", 'demo4-myRange()', "-"*40)
 def myRange(start=0, stop=100, step=1):
     n = start 
     while n < stop:
@@ -82,7 +82,7 @@ for x in myRange(0,5):
     print(x)
 
 # demo 5
-print("-"*7, 'demo5-fibonacci', "-"*7)
+print("----------------------------------------", 'demo5-fibonacci', "-"*40)
 def fibonacci(n):
     a, b = 0, 1
     count = 0
@@ -134,7 +134,7 @@ public class Main {
 """
 
 # demo 6
-print("-"*7, 'demo6-Decorator', "-"*7)
+print("----------------------------------------", 'demo6-Decorator', "-"*40)
 def upper(func): #Decorator
     def newFunc(args):
         oldresult = func(args)
@@ -176,7 +176,7 @@ def greeting(string):
 print(greeting('Hello! iPhone'))
 
 # demo 7
-print("-"*7, 'demo7-errcheck', "-"*7)
+print("----------------------------------------", 'demo7-errcheck', "-"*40)
 
 def errcheck(func):
     def newFunc(*args):
@@ -197,7 +197,7 @@ print(mydiv(6, 2))
 print(mydiv(6, 0))
 
 # demo 8
-print("-"*7, 'demo8-decorator stacking', "-"*7)
+print("----------------------------------------", 'demo8-decorator stacking', "-"*40)
 
 def upper(func):
     def newfunc(args):

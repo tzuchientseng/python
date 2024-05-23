@@ -16,7 +16,8 @@ public class Banks {
     }
 }
 """
-print("-"*7, 'demo1-class', "-"*7)
+
+print("----------------------------------------", 'demo-class', "-"*40)
 class Banks():
     """定義銀行類別"""
     bankname = 'Taipei Bank'
@@ -27,7 +28,6 @@ print(f"目前服務的銀行是:{userbank.bankname}")
 print(f"目前服務的理念是:{userbank.motto()}")
 
 # demo 2
-print("-"*7, 'demo2-initialize', "-"*7)
 """
 public class Banks {
     // 定義銀行類別
@@ -67,7 +67,7 @@ hungbank = Banks('hung', 100)
 print(hungbank.name.title(), "存款餘額:", hungbank.get_balance())
 
 # demo 3
-print("-"*7, 'demo3-private_feild', "-"*7)
+print("----------------------------------------", 'demo-private_feilde', "-"*40)
 class Banks():
     """定義銀行類別"""
     def __init__(self, uname):
@@ -91,7 +91,7 @@ hungank._Banks__balance = 100_0000
 hungank.get_balance()
     
 # demo 4
-print("-"*7, 'demo4-private_method', "-"*7)
+print("----------------------------------------", 'demo-private_method', "-"*40)
 class Banks():
     """定義銀行類別"""
     def __init__(self, uname):
@@ -120,7 +120,7 @@ print(usdallor, "美金可以兌換", hungbank.usa_to_taiwan(usdallor), "台幣"
 hungbank._Banks__cal_rate(50)
 
 # demo 5
-print("-"*7, 'demo5-static', "-"*7)
+print("----------------------------------------", 'demo-static', "-"*40)
 """
 public class MyClass {
     // 類屬性
@@ -179,7 +179,7 @@ MyClass.static_method()
 MyClass.class_method()
 
 # demo 6
-print("-"*7, 'demo6-inheritance', "-"*7)
+print("----------------------------------------", 'demo-inheritance', "-"*40)
 class Father():
     def hometown(self):
         print('我住在埔里')
@@ -203,7 +203,7 @@ Tseng.get_postion()
 chien.get_postion()
 
 # demo 7
-print("-"*7, 'demo7', "-"*7)
+print("----------------------------------------", 'demo', "-"*40)
 class BanksBASE():
     """定義銀行類別"""
     def __init__(self, uname):
@@ -233,7 +233,7 @@ hungank = Shilin_Banks('hung')
 print("我的存款銀行是: ", hungank.bank_title())
 
 # demo 8
-print("-"*7, 'demo8-super()', "-"*7)
+print("----------------------------------------", 'demo-super()', "-"*40)
 """
 public class Demo8Super {
     public static void main(String[] args) {
@@ -298,7 +298,7 @@ mydog.run()
 mydog.sleeping()
 
 # demo 9
-print("-"*7, 'demo9-super()', "-"*7)
+print("----------------------------------------", 'demo-super()', "-"*40)
 class Grandfather:
     """Defines grandfather's inheritance"""
     def __init__(self):
@@ -315,10 +315,6 @@ class Father(Grandfather):
         
     def get_info2(self):
         print("Father's information")
-<<<<<<< HEAD
-=======
-
->>>>>>> 7b065b851c7b129bc698f9bedb770ca6d5557563
 class Sunny(Father):
     """Defines Sunny's inheritance"""
     def __init__(self):
@@ -337,7 +333,7 @@ sunny.get_info2()  # This will print father's information
 sunny.get_info1()  # This will print grandfather's information
 
 # demo 10
-print("-"*7, 'demo10-兄弟類別屬性', "-"*7)
+print("----------------------------------------", 'demo-兄弟類別屬性', "-"*40)
 class Father:
     """Defines father's inheritance"""
     def __init__(self):
@@ -364,7 +360,7 @@ ivan = Ivan()
 ivan.get_money()
 
 # demo 11
-print("-"*7, 'demo11-self', "-"*7)
+print("----------------------------------------", 'demo-self', "-"*40)
 class Person():
     def interest(self):
         print("Smiling is my interest")
@@ -390,9 +386,4 @@ public class Person {
         interest(hung);
     }
 }
-<<<<<<< HEAD
 """
-=======
-"""
-
->>>>>>> 7b065b851c7b129bc698f9bedb770ca6d5557563

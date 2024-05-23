@@ -1,5 +1,5 @@
 # demo 1
-print("-"*7, 'demo1', "-"*7)
+print("----------------------------------------", 'demo', "-"*40)
 """
 // 定義一個函數式介面
 interface MyFunction {
@@ -24,7 +24,7 @@ square = lambda x: x ** 2
 print(square(4))
 
 # demo 2
-print("-"*7, 'demo2', "-"*7)
+print("----------------------------------------", 'demo', "-"*40)
 """
 import java.util.function.*;
 public class Main {
@@ -51,7 +51,7 @@ product = lambda x, y: x*y
 print(product(5, 10))
 
 # demo 3
-print("-"*7, 'demo3', "-"*7)
+print("----------------------------------------", 'demo', "-"*40)
 """
     import java.util.function.Function;
     public class Main {
@@ -73,7 +73,7 @@ linear2 = func(4)
 print(linear2(4))
 
 # demo 4 (Higher-order function)
-print("-"*7, 'demo4', "-"*7)
+print("----------------------------------------", 'demo', "-"*40)
 def mycar(cars, func):  #(list, function)
     for car in cars:
         print(func(car))
@@ -84,7 +84,7 @@ dreamcars = ['porsche', 'roolls royce', 'maserati']
 mycar(dreamcars, wdcar)
 
 # lambda
-print("-"*4, 'demo4_lambda', "-"*4)
+print("----------------------------------------", 'demo', "-"*40)
 def mycar(cars, func):  #(list, function)
     for car in cars:
         print(func(car))
@@ -92,7 +92,7 @@ dreamcars = ['porsche', 'roolls royce', 'maserati']
 mycar(dreamcars, lambda carbrand: "My dream car is " + carbrand.title())
 
 # demo 5 (filter)
-print("-"*7, 'demo5', "-"*7)
+print("----------------------------------------", 'demo', "-"*40)
 def oddfn(x):
     return x if (x % 2 == 1) else None
 myList = [5, 10, 15, 20 , 25, 30]
@@ -102,20 +102,20 @@ print([n for n in myList if n % 2 == 1])
 print([n for n in filter_object]) #n for n 只能迭代(iterate)一次 因此輸出空集合
 
 # lambda
-print("-"*4, 'demo4_lambda', "-"*4)
+print("----------------------------------------", 'demo', "-"*40)
 myList = [598, 103, 215, 204 , 235, 430]
 
 print("The odd index in list: ", list(filter(lambda x : (x % 2 == 1), myList)))
 
 # demo 6 (map())
-print("-"*7, 'demo6', "-"*7)
+print("----------------------------------------", 'demo', "-"*40)
 # x, y = map(int, input().split()) #map(func, iterable)
 myList = [598, 103, 215, 204 , 235, 430]
 squareList = list(map(lambda x : x ** 2, myList))
 print("The squareList: ", squareList)
 
 # demo 7 (reduce())
-print("-"*7, 'demo7', "-"*7)
+print("----------------------------------------", 'demo', "-"*40)
 from functools import reduce
 
 from numpy import integer
@@ -129,7 +129,7 @@ numbers = [1, 2, 3, 4, 5]
 result = reduce(multiply, numbers)
 print(result)  # 輸出 120 (1 * 2 * 3 * 4 * 5)
 
-print("-"*4, 'demo7-2', "-"*4)
+print("----------------------------------------", 'demo', "-"*40)
 # string to integer
 def strToInt(s):
     def func(x, y):
@@ -146,7 +146,7 @@ x = strToInt(string) + 10
 print("x + 10 =", x)
 
 # lambda
-print("-"*4, 'demo7-2_lambda', "-"*4)
+print("----------------------------------------", 'demo', "-"*40)
 def strToInt(s):
     def charToNum(s):
         return {'0':0, '1':1, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9 }[s]
@@ -156,7 +156,7 @@ x = strToInt(string) + 10
 print("x + 10 =", x)
 
 # demo 8 (len())
-print("-"*7, 'demo8', "-"*7)
+print("----------------------------------------", 'demo', "-"*40)
 
 strs = ['abc', 'ab', 'abcde']
 # str_len = lambda x:len(x)
@@ -165,6 +165,7 @@ print("The length:", [(lambda x: len(x))(i) for i in strs])
 # print([lambda x:len(x)(i) for i in strs]) #不能這樣寫進去 lambda 需要先呼叫(); print((lambda x: len(x))('abc')) 不能print(lambda x:len(x)('abc'))
 
 # demo 9 (sorted())
+print("----------------------------------------", 'demo', "-"*40)
 """
 List<String> names = Arrays.asList("Alice", "Bob", "Charlie", "David");
 
@@ -174,7 +175,6 @@ Collections.sort(names, (a, b) -> a.compareTo(b));
 // 輸出排序後的列表
 names.forEach(System.out::println);
 """
-print("-"*7, 'demo9', "-"*7)
 sc = [['Johhn', 80], ['Tom', 90], ['Kevin', 77]]
 sc.sort(key = lambda x: x[1], reverse="True") #返回值是None
 print(sc)

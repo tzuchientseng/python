@@ -119,3 +119,18 @@ except ZeroDivisionError as e:
 finally:
     # 無論是否拋出異常，都會執行這裡的代碼
     print("This will always be executed.")
+
+print("----------------------------------------", 'demo-Defined Exception', "-"*40)
+def password(x):
+    pwdlen = len(x)
+    if pwdlen <=6:
+        raise Exception("Pwd too short")
+    elif pwdlen >= 12:
+        raise Exception("Too long.")
+    elif x != x.title():
+        raise Exception("Capital letter!")
+    else: 
+        print("-------Password Valid-------")
+
+pwd = input("Enter the password (6~12):\n")
+password(pwd)

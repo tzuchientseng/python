@@ -5,16 +5,12 @@ sys.path.append('module')
 
 # demo 1
 print("----------------------------------------", 'demo1-import function(直接import 模組名稱)', "-"*40)
-
 import module.makefood as object
 from module.makefood import make_icecream, make_drink
 from module.makefood import *
-
-
 make_icecream("草莓醬")
 make_icecream("草莓醬", "葡萄乾", "巧克力碎片")
 make_drink("large", "Coke")
-
 object.make_drink("large", "Coke")
 
 # demo 2
@@ -30,12 +26,12 @@ print("Hung's bank = ", hungbank.bank_title())
 
 # demo 3
 print("----------------------------------------", 'demo3-import module name(import 檔名 使用模組名稱.類別名稱)', "-"*40)
-import bank
-jamesbank = bank.Banks('James')
+import module.bank
+jamesbank = module.bank.Banks('James')
 print("James's bank = ", jamesbank.bank_title())
 jamesbank.save_money(500)
 jamesbank.get_balance()
-hungbank = bank.Shilin_Banks('Hung')
+hungbank = module.bank.Shilin_Banks('Hung')
 print("Hung's bank = ", hungbank.bank_title())
 
 # demo 4
@@ -57,7 +53,7 @@ print("----------------------------------------", 'demo4-Random(0~1)', "-"*40)
 for i in range(5):
     print(random.random())
 
-print("----------------------------------------", 'demo-uniform', "-"*40)
+print("----------------------------------------", 'demo-uniform(Float)', "-"*40)
 for i in range(5):
     print("Uniform(1, 10) : ", random.uniform(1, 10))
 
@@ -191,6 +187,44 @@ print(palindrome("abccba"))
 print(palindrome("radar"))
 print(palindrome("python"))
 
+# method 2
+def is_palindrome(s: str) -> bool:
+    # 去除字串中的空白及非字母數字字符，並轉為小寫
+    cleaned_s = ''.join(filter(str.isalnum, s)).lower()
+    # 比較清理後的字串與其反轉後的字串
+    return cleaned_s == cleaned_s[::-1]
+test_strings = ["A man, a plan, a canal, Panama", "racecar", "hello"]
+for s in test_strings:
+    print(f"'{s}' 是回文: {is_palindrome(s)}")
+"""
+public class PalindromeChecker {
+    public static void main(String[] args) {
+        String[] testStrings = {"A man, a plan, a canal, Panama", "racecar", "hello"};
+        for (String s : testStrings) {
+            System.out.println("'" + s + "' 是回文: " + isPalindrome(s));
+        }
+    }
+    public static boolean isPalindrome(String s) {
+        // 將字串中的空白及非字母數字字符去除，並轉為小寫
+        String cleanedString = s.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        
+        // 設定兩個指針，一個從字串開頭，一個從字串結尾
+        int left = 0;
+        int right = cleanedString.length() - 1;
+        
+        // 檢查字串是否對稱
+        while (left < right) {
+            if (cleanedString.charAt(left) != cleanedString.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        
+        return true;
+    }
+}
+"""
 print("----------------------------------------", 'pprint', "-"*40)
 import sys
 from pprint import pprint
@@ -198,7 +232,6 @@ print("print:")
 print(sys.path)
 print("pprint:")
 pprint(sys.path)
-
 print("----------------------------------------", 'itertools', "-"*40)
 import itertools
 
@@ -218,7 +251,7 @@ for i in itertools.accumulate((1,2,3,4,5),mul):
 for i in itertools.accumulate((1,2,3,4,5), (lambda x, y: x * y)):
     print(i)
 
-print("----------------------------------------", 'Combinations', "-"*40)
+print("----------------------------------------", 'Combinations()', "-"*40)
 n = ['a', 'b', 'c']
 r = 2
 comb = itertools.combinations(n, r)

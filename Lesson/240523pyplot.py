@@ -72,7 +72,6 @@ Lexus = [5200, 4930, 5350]
 seq = [2021, 2022, 2023]
 
 plt.xticks(seq)
-plt.tick_params(axis='both', color='red')
 plt.legend(loc='best')  
 
 plt.plot(seq, Benz, '-.*', label='Benz')
@@ -82,7 +81,13 @@ plt.plot(seq, Lexus, '-v', label='Lexus')
 plt.title("Sales Report", fontsize=24)
 plt.xlabel("Year", fontsize=14)
 plt.ylabel("Number of Sales", fontsize=14)
+plt.tick_params(axis='both', color='red')
 
 plt.show()
 
-print("----------------------------------------", 'demo', "-"*40)
+print("----------------------------------------", 'demo-Scatter', "-"*40)
+import matplotlib.pyplot as plt
+hour = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
+work = [80, 95, 65, 70, 49, 39, 2, 45, 99, 100]
+plt.scatter(hour, work)
+plt.show()

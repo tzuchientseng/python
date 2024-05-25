@@ -15,7 +15,7 @@ object.make_drink("large", "Coke")
 
 # demo 2
 print("----------------------------------------", 'demo2-import classes(from 檔名 import 類別名稱)', "-"*40)
-from bank import *
+from module.bank import *
 jamesbank = Banks('James')
 print("James's bank = ", jamesbank.bank_title())
 jamesbank.save_money(500)

@@ -1,3 +1,9 @@
+"""
+1.Plotting data: x, y, 型態(線的樣式), 線名稱(label), legend loc (label)
+2.標題 X, y 名稱
+3.刻度調整(xticks, x最大最小與y最大最小, 網格)
+4.文字加入 show()
+"""
 print("----------------------------------------", 'demo-matplotlib.pylot', "-"*40)
 import matplotlib.pyplot as plt
 y = [8, 12, 24, 28, 10, 23, 3, 3, 34, 23]
@@ -11,6 +17,7 @@ plt.title("Data")
 plt.xlabel("x")
 plt.ylabel("y")
 
+plt.xticks(x)
 plt.axis([0, 10, 0, 50])
 plt.grid()
 
@@ -49,7 +56,8 @@ data2 = [1, 3, 6, 10, 15, 21, 28, 36]
 data3 = [4, 4, 4, 4, 4, 4, 4, 4] 
 data4 = [1, 3, 6, 10, 15, 21, 28, 36] 
 
-seq = [1,2,3,4,5,6,7,8] # plt.plot(seq, data1, 'r--', 
+seq = [1,2,3,4,5,6,7,8] 
+# plt.plot(seq, data1, 'r--', 
 #          seq, data2, 'g.')
 plt.plot(seq, data1, 'r--*', label='Data 1')
 plt.plot(seq, data2, 'g-o', label='Data 2')

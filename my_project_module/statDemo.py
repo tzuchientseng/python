@@ -1,6 +1,7 @@
-import numpy as np
-from scipy import stats
-from my_project_module.statistic import DesData  # Import the DesData class
+# import numpy as np
+# from scipy import stats
+from matplotlib import pyplot as plt
+from statistic import *
 class StatisticsDemo:
 
     @staticmethod
@@ -12,7 +13,8 @@ class StatisticsDemo:
         data = [148, 155, 126, 117, 124, 136, 141, 133, 129, 146]
         # Create an instance of DesData with the data
         descriptive_stats = DesData(data)
-        
+
+
         # Print basic descriptive statistics
         print("Average:", descriptive_stats.mean())
         print("Variance:", descriptive_stats.vari())
@@ -62,6 +64,19 @@ class StatisticsDemo:
         print("\n-----------------Inferential Statistics-----------------")
         # Create an instance of InferentialStatistics with the data
         # inferential_stats = InferData(data)  # Uncomment if InferData is implemented
+        
+        x = [_ for _ in range(1, len(data) + 1)]
+        plt.plot(x, data, 'y-*', lw=2, label="data")
+        plt.legend(loc="best")       
+        plt.title("Descriptive Statistics")
+        plt.xlabel("x")
+        plt.ylabel("y")
+        plt.xticks(x) 
+        plt.tick_params(axis="both", color='red')
+        plt.axis([0, len(x) + 1, 0, max(data) + 100])
+        plt.grid()
+        # plt.text(0.5, 0.1, text_str, transform=plt.gca().transAxes, fontsize=12, verticalalignment='top', bbox=dict(facecolor='white', alpha=0.5))
+        plt.show()
 
 if __name__ == "__main__":
     StatisticsDemo.main()

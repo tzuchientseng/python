@@ -20,9 +20,9 @@ lower, upper = object.bound(90)
 text_str = f"the mean (\u03bc) estimate (\u03c3 unknown): [{lower:.2f}, {upper:.2f}]"
 print(text_str)
 """
-1.(2)Plotting data: x, y, 型態(線的樣式), 線名稱(label), legend loc (label)
+1.Plotting data: x, y, 型態(線的樣式), 線名稱(label), legend loc (label)
 2.標題 X, y 名稱
-3.(4)刻度調整(xticks, 刻度顏色), x最大最小與y最大最小, 網格)
+3.刻度調整(xticks, 刻度顏色), x最大最小與y最大最小, 網格)
 4.文字加入 show()
 """
 plt.plot(day, data, 'r-o', lw=2, label="price")

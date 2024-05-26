@@ -67,7 +67,7 @@ hungbank = Banks('hung', 100)
 print(hungbank.name.title(), "存款餘額:", hungbank.get_balance())
 
 # demo 3
-print("----------------------------------------", 'demo-private_feilde', "-"*40)
+print("----------------------------------------", 'demo-private_field', "-"*40)
 class Banks():
     """定義銀行類別"""
     def __init__(self, uname):

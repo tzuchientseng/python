@@ -271,3 +271,9 @@ for gene in itertools.combinations(x, r):
     counter += 1
 print("單眼皮機率: %5.3f" % (single / counter))
 print("雙眼皮機率: %5.3f" % (double / counter))
+
+print("----------------------------------------", 'pyperclip', "-"*40)
+import pyperclip as clip
+clip.copy('SUNNY')
+string = clip.paste()
+print(string)

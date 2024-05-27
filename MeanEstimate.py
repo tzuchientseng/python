@@ -2,8 +2,6 @@
 import sys
 import matplotlib.pyplot as plt
 
-import matplotlib.pyplot as plt
-
 sys.path.append('my_project_module')
 # from scipy import stats
 

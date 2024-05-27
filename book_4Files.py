@@ -1,6 +1,5 @@
-import os
-
 print("----------------------------------------", 'demo-os.getcwd()(get current directory), os.walk()(field: dirname, sub_dirnames, filenames), os.listdir()', "-"*40)
+import os
 print("current working directory:", os.getcwd())
 print("the content: ", os.listdir(os.getcwd()))
 

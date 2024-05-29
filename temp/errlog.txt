@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "d:\Coding\python\book_5Exception.py", line 79, in <module>
+    passWord(pwd)
+  File "d:\Coding\python\book_5Exception.py", line 74, in passWord
+    raise Exception('Too long')
+Exception: Too long
+Traceback (most recent call last):
+  File "d:\Coding\python\book_5Exception.py", line 79, in <module>
+    passWord(pwd)
+  File "d:\Coding\python\book_5Exception.py", line 72, in passWord
+    raise Exception('Too short!!')
+Exception: Too short!!

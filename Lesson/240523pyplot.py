@@ -23,7 +23,7 @@ plt.grid()
 
 plt.show()
 
-print("----------------------------------------", 'demo2-matplotlib.pylot', "-"*40)
+print("----------------------------------------", 'demo-matplotlib.pylot', "-"*40)
 import matplotlib.pyplot as plt
 x = [1, 2, 3, 4]
 y1 = [1, 4, 9, 16]
@@ -77,21 +77,25 @@ Benz = [3367, 4120, 5539]
 BMW = [4000, 3590, 4423]
 Lexus = [5200, 4930, 5350]
 
-seq = [2021, 2022, 2023]
+years = [2021, 2022, 2023]
 
-plt.xticks(seq)
+plt.xticks(years)
 plt.legend(loc='best')  
 
-plt.plot(seq, Benz, '-.*', label='Benz')
-plt.plot(seq, BMW, '-o', label='BMW')
-plt.plot(seq, Lexus, '-v', label='Lexus')
+plt.plot(years, Benz, '-.*', label='Benz')
+plt.plot(years, BMW, '-o', label='BMW')
+plt.plot(years, Lexus, '-v', label='Lexus')
 
 plt.title("Sales Report", fontsize=24)
 plt.xlabel("Year", fontsize=14)
 plt.ylabel("Number of Sales", fontsize=14)
-plt.tick_params(axis='both', color='red')
+plt.grid(True)  # Adding grid for better readability
+plt.tick_params(axis='both', which='major', labelsize=12, labelcolor='blue')  # Customizing tick parameters
+
+plt.legend()  # Adding legend
 
 plt.show()
+
 
 print("----------------------------------------", 'demo-Scatter', "-"*40)
 import matplotlib.pyplot as plt

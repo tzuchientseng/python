@@ -59,21 +59,43 @@ plt.show()
 
 print("----------------------------------------", 'demo-bar', "-"*40)
 import matplotlib.pyplot as plt
-goods = ['A', 'B', 'C', 'D']
+goods = ['a', 'b', 'c', 'd']
 sell = [69, 79, 49, 59]
-index = range(len(goods))  # Generate the x-ticks
+index = range(len(goods))  # generate the x-ticks
 
-plt.figure(figsize=(10, 6))  # Set the figure size for better readability
-plt.bar(index, sell, color='skyblue')  # Add color for better visualization
-plt.xticks(index, goods)  # Pair index with goods
-plt.xlabel('Goods')  # Label for the x-axis
+plt.figure(figsize=(10, 6))  # set the figure size for better readability
+plt.bar(index, sell, color='skyblue', width=0.8)  # add color for better visualization; width default = 0.8
+plt.xticks(index, goods)  # pair index with goods
+plt.xlabel('goods')  # label for the x-axis
+plt.ylabel('units sold')  # label for the y-axis
+plt.title('sales of goods')  # title of the chart
+plt.grid(axis='y', linestyle='--', alpha=0.7)  # add grid lines for the y-axis
+
+plt.tight_layout()  # adjust layout to make room for the labels
+plt.show()
+"""
+import matplotlib.pyplot as plt
+
+# 假設有一組銷售數據
+sales_data = [59, 65, 75, 55, 45, 70, 60, 80, 90]
+categories = [f'Item {i+1}' for i in range(len(sales_data))]
+
+plt.figure(figsize=(10, 6))  # Set the figure size for better readability (width:10, height:6)
+bars = plt.bar(categories, sales_data, color='skyblue', edgecolor='black')  # Create the bar chart
+
+# 在每個柱狀上方顯示數據點的高度
+for bar in bars:
+    plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height(),
+             int(bar.get_height()), ha='center', va='bottom')
+
+plt.xlabel('Items')  # Label for the x-axis
 plt.ylabel('Units Sold')  # Label for the y-axis
-plt.title('Sales of Goods')  # Title of the chart
+plt.title('Sales Data')  # Title of the chart
 plt.grid(axis='y', linestyle='--', alpha=0.7)  # Add grid lines for the y-axis
 
 plt.tight_layout()  # Adjust layout to make room for the labels
-# plt.show()
-
+plt.show()
+"""
 print("----------------------------------------", 'demo-histogram', "-"*40)
 import matplotlib.pyplot as plt
 import numpy as np
@@ -81,7 +103,7 @@ import numpy as np
 # 假設有一組銷售數據
 sales_data = [59, 65, 75, 55, 45, 70, 60, 80, 90]
 
-plt.figure(figsize=(10, 6))  # Set the figure size for better readability
+plt.figure(figsize=(10, 6))  # Set the figure size for better readability (width:10, height:6)
 n, bins, patches = plt.hist(sales_data, bins=5, color='skyblue', edgecolor='black')  # Create the histogram
 
 # 在每個柱狀上方顯示數據點的高度
@@ -96,7 +118,23 @@ plt.grid(axis='y', linestyle='--', alpha=0.7)  # Add grid lines for the y-axis
 
 plt.tight_layout()  # Adjust layout to make room for the labels
 plt.show()
+"""
+import matplotlib.pyplot as plt
+goods = ['a', 'b', 'c', 'd']
+sell = [69, 79, 49, 59]
+index = range(len(goods))  # generate the x-ticks
 
+plt.figure(figsize=(10, 6))  # set the figure size for better readability
+plt.bar(index, sell, color='skyblue', width=1)  # add color for better visualization; width default = 0.8
+plt.xticks(index, goods)  # pair index with goods
+plt.xlabel('goods')  # label for the x-axis
+plt.ylabel('units sold')  # label for the y-axis
+plt.title('sales of goods')  # title of the chart
+plt.grid(axis='y', linestyle='--', alpha=0.7)  # add grid lines for the y-axis
+
+plt.tight_layout()  # adjust layout to make room for the labels
+plt.show()
+"""
 print("----------------------------------------", 'demo-barh', "-"*40)
 # import matplotlib.pyplot as plt
 goods = ['A', 'B', 'C', 'D']
@@ -139,3 +177,153 @@ plt.title("Language Proficiency Rates") # Add a title to the pie chart
 plt.show() # Display the pie chart
 
 print("----------------------------------------", 'demo', "-"*40)
+import numpy as np  # numpy module used to calculate correlation coefficient
+import matplotlib.pyplot as plt  # matplotlib used for plotting
+time = [
+    60, 10, 40, 80, 80, 30, 60, 90, 50, 60,
+    70, 20, 40, 40, 70, 80, 90, 20, 30, 30,
+    60, 50, 80, 10, 40, 20, 80, 80, 80, 20,
+    60, 70, 20, 30, 80, 90, 90, 80, 70, 80
+]
+score = [
+    60, 10, 40, 70, 80, 30, 60, 90, 50, 60,
+    70, 20, 40, 40, 70, 80, 90, 20, 30, 30,
+    60, 50, 80, 10, 40, 20, 70, 80, 70, 20,
+    60, 70, 40, 40, 80, 70, 90, 80, 70, 60
+]
+
+# Calculate correlation coefficient: ranges between -1 and 1
+correlation = np.corrcoef(time, score)
+print('Correlation Coefficient:', correlation)
+"""
+time | score
+----------------
+time | 1 | -0.586
+score|-0.586 | 1
+"""
+
+# Least squares line or regression line: y = ax + b
+a = np.polyfit(time, score, 1)
+b = np.poly1d(a)
+
+plt.plot(time, b(time), color='red') # Plot the regression line
+plt.rcParams['font.family'] = 'Microsoft JhengHei' # Set font to Microsoft JhengHei for better readability
+plt.scatter(time, score) # Plot data points
+
+# Add titles and labels
+plt.title('PHONE USING TIME', fontsize=20)
+plt.xlabel("Phone Screen Time", fontsize=16)
+plt.ylabel("Score", fontsize=16)
+plt.show()
+import matplotlib as plt
+import statistics as st
+import numpy as np
+print('----Mode----')
+print('time', st.mode(time))
+print('score', st.mode(score))
+print('----Var----')
+print('timeVariance:', np.var(time))
+print('timeSampleVariance:', np.var(time, ddof = 1)) #Delta Degrees of Freedom.
+print('scoreVariance:', np.var(score))
+print('scoreSampleVariance:', np.var(score, ddof = 1)) #Delta Degrees of Freedom.
+print("----")
+print('timeVariance:', st.pvariance(time))
+print('timeSampleVariance:', st.variance(time)) #Delta Degrees of Freedom.
+print('scoreVariance:', st.pvariance(score))
+print('scoreySampleVariance:', st.variance(score)) #Delta Degrees of Freedom.
+print('----Dev----')
+print('timeDeviation:', np.std(time))
+print('timeSampleDeviation:', np.std(time, ddof = 1)) #Delta Degrees of Freedom.
+print('scoreDeviation:', np.std(score))
+print('scoreSampleDeviation:', np.std(score, ddof = 1)) #Delta Degrees of Freedom.
+print("----")
+print('timeDeviation:', st.pstdev(time))
+print('timeSampleDeviation:', st.stdev(time)) #Delta Degrees of Freedom.
+print('scoreDeviaton:', st.pstdev(score))
+print('scoreSampleDeiation:', st.stdev(score)) #Delta Degrees of Freedom.
+print("----correlation coefficient----")
+print("correlation coefficient: ", np.corrcoef(time, score))
+
+print("----------------------------------------", 'demo', "-"*40)
+print("----------------------------------------", 'demo', "-"*40)
+print("----------------------------------------", 'demo', "-"*40)
+print("----------------------------------------", 'demo', "-"*40)
+print("----------------------------------------", 'demo-bar', "-"*40)
+import matplotlib.pyplot as plt
+
+# 創建一個圖形並設置大小
+plt.figure(figsize=(10, 6))
+
+# 繪製一些數據
+index = [1, 2, 3, 4, 5]
+sell = [10, 20, 15, 25, 30]
+plt.bar(index, sell, color='skyblue', width=1)
+
+# 顯示圖形
+plt.show()
+import matplotlib.pyplot as plt
+
+# 創建一個圖形並設置大小和解析度
+plt.figure(figsize=(10, 6), dpi=100)
+
+# 繪製一些數據
+index = [1, 2, 3, 4, 5]
+sell = [10, 20, 15, 25, 30]
+plt.bar(index, sell, color='skyblue', width=1)
+
+# 顯示圖形
+plt.show()
+import matplotlib.pyplot as plt
+
+# 第一個圖形
+plt.figure(figsize=(10, 6))
+index1 = [1, 2, 3, 4, 5]
+sell1 = [10, 20, 15, 25, 30]
+plt.bar(index1, sell1, color='skyblue', width=1)
+plt.title('Figure 1')
+
+# 第二個圖形
+plt.figure(figsize=(8, 5))
+index2 = [1, 2, 3, 4, 5]
+sell2 = [30, 25, 20, 15, 10]
+plt.bar(index2, sell2, color='salmon', width=1)
+plt.title('Figure 2')
+
+# 顯示圖形
+plt.show()
+import matplotlib.pyplot as plt
+
+# 創建一個圖形並設置大小
+plt.figure(figsize=(12, 6))
+
+# 第一個子圖
+plt.subplot(1, 2, 1)
+index1 = [1, 2, 3, 4, 5]
+sell1 = [10, 20, 15, 25, 30]
+plt.bar(index1, sell1, color='skyblue', width=1)
+plt.title('Subplot 1')
+
+# 第二個子圖
+plt.subplot(1, 2, 2)
+index2 = [1, 2, 3, 4, 5]
+sell2 = [30, 25, 20, 15, 10]
+plt.bar(index2, sell2, color='salmon', width=1)
+plt.title('Subplot 2')
+
+# 顯示圖形
+plt.show()
+import matplotlib.pyplot as plt
+goods = ['a', 'b', 'c', 'd']
+sell = [69, 79, 49, 59]
+index = range(len(goods))  # generate the x-ticks
+
+plt.figure(figsize=(10, 6))  # set the figure size for better readability
+plt.bar(index, sell, color='skyblue', width=0.8)  # add color for better visualization; width default = 0.8
+plt.xticks(index, goods)  # pair index with goods
+plt.xlabel('goods')  # label for the x-axis
+plt.ylabel('units sold')  # label for the y-axis
+plt.title('sales of goods')  # title of the chart
+plt.grid(axis='y', linestyle='--', alpha=0.7)  # add grid lines for the y-axis
+
+plt.tight_layout()  # adjust layout to make room for the labels
+plt.show()

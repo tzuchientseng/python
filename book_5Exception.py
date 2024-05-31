@@ -197,3 +197,8 @@ def factorial(n):
 num = 5
 print(f"{num}! = {factorial(num)}")
 logging.debug('--end--')                
+
+print("----------------------------------------", 'demo-copy', "-"*40)
+logging.disable(logging.CRITICAL) 
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(levelname)s : %(message)s')

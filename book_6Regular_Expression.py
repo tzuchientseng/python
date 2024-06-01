@@ -236,14 +236,157 @@ print(txt)
 print("----------------------------------------", 'demo- . (wildcard)', "-"*40)
 import re
 msg = 'Cat hat sat at matter flat'
-pattern = r'.at'
+pattern = r'.at' #['Cat', 'hat', 'sat', ' at', 'mat', 'lat']
 txt = re.findall(pattern, msg)
 print(txt)
+
+print("----------------------------------------", 'demo- .*', "-"*40)
 msg2 = 'Name: Tzu-chien Tseng Address: 2 Taichun, 2A.'
 pattern = r'Name:(.*) Address: (.*)'
 txt = re.search(pattern, msg2)
 Name, Address = txt.groups()
 print("Name: ", Name)
 print("Address: ", Address)
+
+print("----------------------------------------", 'demo- re.DOTALL(跳過換行字元)', "-"*40)
+msg3 = 'Name: Tzu-chien Tseng\n Address: 2 Taichun, 2A.'
+pattern = r'.*'
+print("Exist \'\\n\': ", re.search(pattern, msg3).group())
+txt = re.search(pattern, msg3, re.DOTALL)
+print(txt.group())
+
+print("----------------------------------------", 'demo-re.match() (The pattern should at the start!)', "-"*40)
+import re 
+msg = 'John will attend my party tonight. '
+pattern = 'John'
+txt = re.match(pattern, msg)
+if txt != None:
+    print("Out put: ", txt.group())
+    print("MatchObject: ", txt)
+else:
+    print("Out put: None")
+
+msg = 'My best briend is John.'
+pattern = 'John'
+txt = re.match(pattern, msg)
+if txt != None:
+    print("Out put: ", txt.group())
+    print("MatchObject: ", txt)
+else:
+    print("Out put: None")
+
+print("----------------------------------------", 'demo-group(), end(), start(), span()', "-"*40)
+import re
+print("match()")
+msg = 'John will attend my party tonight. '
+pattern = 'John'
+txt = re.match(pattern, msg)
+if txt != None:
+    print("start() index: ", txt.start())
+    print("end() index: ", txt.end())
+    print("span() index: ", txt.span())
+    print("group() index: ", txt.group())
+
+print("search()")
+msg = 'My best friend is John. '
+pattern = 'John'
+txt = re.search(pattern, msg)
+if txt != None:
+    print("start() index: ", txt.start())
+    print("end() index: ", txt.end())
+    print("span() index: ", txt.span())
+    print("group() index: ", txt.group())
+
+print("----------------------------------------", 'demo-result = re.sub(pattern, newstr, msg) ', "-"*40)
+import re
+msg = 'Eli Nan will attend my party tonight. My best friend is Eli Nan.'
+pattern = 'Eli Nan'
+newstr = 'Sunny Tseng'
+txt = re.sub(pattern, newstr, msg)
+print(txt) if txt != msg else print("sub() FAIL!")
+
+msg = 'Eli Nan will attend my party tonight. My best friend is Eli Nan.'
+pattern = 'Eli Thomson'
+newstr = 'Sunny Tseng'
+txt = re.sub(pattern, newstr, msg)
+print(txt) if txt != msg else print("sub() is FAIL! Origin Txt:", txt)
+
+print("----------------------------------------", 'demo-CIA', "-"*40)
+import re
+msg = 'CIA Mark told CIA linda that secret USB had given to CIA Peter.'
+pattern = r'CIA (\w)\w*'
+newstr = r'\1***' #capture group 1
+txt  = re.sub(pattern, newstr, msg)
+print(txt)
+
+import re
+pattern = r'CIA \w(\w)\w*'
+newstr = r'\1***'
+text = 'CIA Mark told CIA linda that secret USB had given to CIA Peter.'
+result = re.sub(pattern, newstr, text)
+print(result)  # 輸出結果將是 "g***"
+
+import re
+pattern = r'CIA (\w)(\w)\w*'
+newstr = r'\2***' #capture group 2
+text = 'CIA Mark told CIA linda that secret USB had given to CIA Peter.'
+result = re.sub(pattern, newstr, text)
+print(result)  # 輸出結果將是 "g***"
+
+print("----------------------------------------", 'demo-Phone Number (VERBOSE可加註解)', "-"*40)
+import re
+msg = '''02-88223349,
+        (02)-26669999,
+        02-29998888 ext 123,
+        12345678,
+        02 33887766 ext. 12,
+        02 33887766 ext. 1234,
+        12345,
+        123'''
+
+pattern = r'''(
+                (\d{2}|\(\d{2}\))?     # 區域號碼
+                (\s|-)?                # 區域號碼與電話號碼的分隔符號
+                \d{8}                  # 電話號碼
+                (\s*(ext|ext.)\s*\d{2,4})? # 2-4位數的分機號碼
+            )'''
+
+phoneNum = re.findall(pattern, msg, re.VERBOSE)
+print("以下是符合的電話號碼")
+for num in phoneNum:
+    print(num[0])
+"""
+02-88223349
+(02)-26669999
+02-29998888 ext 123
+ 12345678
+02 33887766 ext. 12
+02 33887766 ext. 1234
+"""
+print("----------------------------------------", 'demo-Email address', "-"*40)
+import re
+msg = '''txt@deepmind.com.tw
+        kkk@gmail.com,
+        abc@aa
+        abcdefg'''
+
+pattern = r'''(
+                [a-zA-Z0-9._]+       # 使用者帳號
+                @                    # @符號
+                [a-zA-Z0-9.-]+       # 主機域名domain
+                [\.]                 # .符號
+                [a-zA-Z]{2,4}        # 可能是com或edu或其它
+                ([\.]?)              # 符號, 也可能無特別是美國
+                ([a-zA-Z]{2,4})?     # 國別
+            )'''
+
+eMail = re.findall(pattern, msg, re.VERBOSE)
+print("以下是符合的電子郵件地址")
+for mail in eMail:
+    print(mail[0])
+"""
+txt@deepmind.com.tw
+kkk@gmail.com
+"""
 
 print("----------------------------------------", 'demo', "-"*40)

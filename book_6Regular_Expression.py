@@ -88,7 +88,7 @@ parseString(msg1)
 parseString(msg2)
 parseString(msg3)
 
-print("----------------------------------------", 'demo-group(), groups()', "-"*40)
+print("----------------------------------------", 'demo-search(), group(), groups()', "-"*40)
 import re
 msg = 'Please call my secretary using 02-26669999'
 pattern = r'(\d{2})-(\d{8})'
@@ -192,13 +192,58 @@ print("-"*17)
 print(re.findall(pattern4, msg))
 print("-"*17)
 
-print("----------------------------------------", 'demo- ^ in regular expression', "-"*40)
+print("----------------------------------------", 'demo- ^ $ in regular expression', "-"*40)
 import re
 msg = 'John will attend my party tonight.'
-pattern = '^John' #at first
+pattern = r'^John' #at first
 print(re.findall(pattern, msg))
 msg = 'MY best friend is John.'
-pattern = '^John'
+pattern = r'^John'
 print(re.findall(pattern, msg))
 
-print("----------------------------------------", 'demo- $ in regular expression', "-"*40)
+import re
+msg = 'John will attend my party 28 tonight.'
+pattern = r'\W$'
+txt = re.findall(pattern,msg)
+print(txt)
+
+msg = 'I am 28'
+pattern = r'\W$'
+txt = re.findall(pattern,msg)
+print(txt)
+
+msg = 'I am 28'
+pattern = r'\d$'
+txt = re.findall(pattern,msg)
+print(txt)
+
+msg = 'I am 28 year old.'
+pattern = r'\d$'
+txt = re.findall(pattern,msg)
+print(txt)
+
+import re
+msg = '09282028222'
+pattern = r'^\d+$'
+txt = re.findall(pattern,msg)
+print(txt)
+
+msg = '0928tuyr990'
+pattern = r'^\d+$'
+txt = re.findall(pattern,msg)
+print(txt)
+
+print("----------------------------------------", 'demo- . (wildcard)', "-"*40)
+import re
+msg = 'Cat hat sat at matter flat'
+pattern = r'.at'
+txt = re.findall(pattern, msg)
+print(txt)
+msg2 = 'Name: Tzu-chien Tseng Address: 2 Taichun, 2A.'
+pattern = r'Name:(.*) Address: (.*)'
+txt = re.search(pattern, msg2)
+Name, Address = txt.groups()
+print("Name: ", Name)
+print("Address: ", Address)
+
+print("----------------------------------------", 'demo', "-"*40)

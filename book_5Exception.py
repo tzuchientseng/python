@@ -78,7 +78,7 @@ for pwd in ('ddfdfdfsldjdfksj', 'ddd','kdkdkd'):
     try:
         passWord(pwd)
     except Exception as err:
-        errlog = open('temp\\errlog.txt', 'a') # Open error file
+        errlog = open('temp/errlog.txt', 'a') # Open error file
         # errlog.write(traceback.format_exc()) # Write traceback to error file
         errlog.close()
         print("New a file!!!(errlog.txt)")
@@ -91,7 +91,7 @@ def division(x, y):
     try:  # try - except statement
         return x / y
     except:  # Catch all exceptions
-        errlog = open('temp\\error.txt', 'a')  # Open error file
+        errlog = open('temp/error.txt', 'a')  # Open error file
         # errlog.write(traceback.format_exc())  # Write traceback to error file
         errlog.close()  # Close error file
         print("Writing traceback to error file errch15_17.txt completed")
@@ -202,3 +202,5 @@ print("----------------------------------------", 'demo-copy', "-"*40)
 logging.disable(logging.CRITICAL) 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s : %(message)s')
+
+print("----------------------------------------", 'demo', "-"*40)

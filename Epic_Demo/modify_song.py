@@ -1,3 +1,14 @@
+"""
+#DEMO: replace() 
+# Define the string containing the hyphen
+number_string = "09-10992678"
+
+# Use the replace method to remove the hyphen
+cleaned_number_string = number_string.replace("-", "")
+
+# Print the result
+print(cleaned_number_string)
+"""
 def clean_song(song_str):
     """Converts all characters to lowercase and replaces punctuation with spaces."""
     for ch in ".,?":

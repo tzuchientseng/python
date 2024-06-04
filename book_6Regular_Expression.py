@@ -175,7 +175,7 @@ msg = '1 cat, 2 dog, 3 pigs, 4 swans'
 pattern = r'\d+\s\w+' #['1 cat', '2 dog', '3 pigs', '4 swans']
 print(re.findall(pattern, msg))
 
-print("----------------------------------------", 'demo-Character classification', "-"*40)
+print("----------------------------------------", 'demo-Character Class', "-"*40)
 import re
 msg = 'John, Johnson, Johnnason and Johnnathan will attend my party tonight.'
 pattern = '[aeiouAEIOU]'
@@ -311,7 +311,7 @@ newstr = 'Sunny Tseng'
 txt = re.sub(pattern, newstr, msg)
 print(txt) if txt != msg else print("sub() is FAIL! Origin Txt:", txt)
 
-print("----------------------------------------", 'demo-CIA', "-"*40)
+print("----------------------------------------", 'demo-CIA_sub()', "-"*40)
 import re
 msg = 'CIA Mark told CIA linda that secret USB had given to CIA Peter.'
 pattern = r'CIA (\w)\w*'

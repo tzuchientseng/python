@@ -28,6 +28,10 @@ import os
 _path = os.path.join('d:\\','coding','python')
 print(os.path.getsize(_path), 'bytes')
 
+print("----------------------------------------", 'demo-!!!!!!!動態路徑(可在不同的目錄下執行)!!!!!!!', "-"*40)
+import os
+fn = os.path.join(os.path.dirname(__file__), '_fileName_')
+
 print("----------------------------------------", 'demo-glob(列出特定工作目錄內容) + os.path.getsize()', "-"*40)
 import os 
 import glob

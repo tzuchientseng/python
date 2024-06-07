@@ -21,7 +21,7 @@ print("----------------------------------------", 'demo-class', "-"*40)
 class Banks():
     """定義銀行類別"""
     bankname = 'Taipei Bank'
-    def motto(self):
+    def motto(self) -> str: #->return type (Tuple)
         return "以客為尊"
 userbank = Banks()
 print(f"目前服務的銀行是:{userbank.bankname}")

@@ -1,3 +1,4 @@
+"""
 import os 
 import csv
 NVDA = os.path.join(os.path.dirname(__file__), 'csv/NVDA.csv')
@@ -24,3 +25,27 @@ with open(QUANTA, encoding='utf-8') as fobj3:
     print('-'*40,"QUANTA",'-'*40)
 for row in list_QUANTA:
     print(row)
+"""
+
+import os
+import pandas as pd #Panel Data(面板控制)
+
+# 定義 CSV 文件路徑
+NVDA = os.path.join(os.path.dirname(__file__), 'csv/NVDA.csv')
+TSMC = os.path.join(os.path.dirname(__file__), 'csv/2320TSMC.csv')
+QUANTA = os.path.join(os.path.dirname(__file__), 'csv/2382QUANTA.csv')
+
+# 讀取 NVDA CSV 文件並打印內容
+df_NVDA = pd.read_csv(NVDA, encoding='utf-8')
+print('-'*40, "NVDA", '-'*40)
+print(df_NVDA)
+
+# 讀取 TSMC CSV 文件並打印內容
+df_TSMC = pd.read_csv(TSMC, encoding='utf-8')
+print('-'*40, "TSMC", '-'*40)
+print(df_TSMC)
+
+# 讀取 QUANTA CSV 文件並打印內容
+df_QUANTA = pd.read_csv(QUANTA, encoding='utf-8')
+print('-'*40, "QUANTA", '-'*40)
+print(df_QUANTA)

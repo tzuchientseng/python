@@ -1,3 +1,29 @@
+"""
+import pandas as pd
+
+# 讀取 CSV 文件
+df = pd.read_csv('data.csv')
+
+# 顯示數據框的前5行
+print(df.head())
+
+# 描述性統計
+print(df.describe())
+
+# 處理缺失值
+df = df.fillna(0)  # 用0填充缺失值
+
+# 選擇特定列
+selected_columns = df[['column1', 'column2']]
+
+# 分組計算
+grouped = df.groupby('category_column').sum()
+
+# 顯示處理後的數據
+print(grouped)
+
+"""
+
 import numpy as np
 class StatTables:
     z_table = {

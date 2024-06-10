@@ -1,3 +1,20 @@
+"""
+class ListNode {
+    int val;
+    ListNode next;
+    
+    ListNode() {}
+    
+    ListNode(int val) {
+        this.val = val;
+    }
+    
+    ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
+    }
+}
+"""
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val

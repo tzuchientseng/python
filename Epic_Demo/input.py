@@ -47,5 +47,4 @@ python script.py a b > output.txt
 sh
 Copy code
 chcp 65001
-希望這些信息能幫到你！
 """

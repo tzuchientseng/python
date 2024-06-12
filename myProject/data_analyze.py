@@ -100,12 +100,16 @@ print(f"QUANTA 平均收盤價 (statsmodels): {quanta_mean_statsmodels}, 95% 信
 print("\n----------------------------------------", '使用自己的module 計算 95% 信賴區間', "-"*40)
 confidence_level = 95  # 95% confidence level
 Descriptive_stats = DesData(df_NVDA['收市'])
+print("\n----------------------------------------", "NVIDIA", "-"*40)
 print(Descriptive_stats.strBound(confidence_level))
 Descriptive_stats2 = DesData(df_QUANTA['收盤價'])
+
+print("\n----------------------------------------", "QUANTA", "-"*40)
 print(Descriptive_stats2.strBound(confidence_level))
 
 Inferential_two_stats = Infer2Data(df_NVDA['收市'], df_QUANTA['收盤價'])
 print()
+print("\n----------------------------------------", "推論統計: NVIDIA/QUANTA", "-"*40)
 print(Inferential_two_stats.two_sample_t_test())
 
 print("\n----------------------------------------", '透過Scipy計算 f統計量 及 p-值', "-"*40)

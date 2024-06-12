@@ -189,4 +189,33 @@ yellow_btn.pack(anchor=S, side=RIGHT, padx=5, pady=5)
 
 window.mainloop()
 
+print("----------------------------------------", 'demo-Variable classes', "-"*40)
+from tkinter import *
+
+def btn_hit():
+    global msg_on
+    if not msg_on:
+        msg_on = True
+        Varx.set("I like python")
+    else:
+        msg_on = False
+        Varx.set("")
+
+window = Tk()
+window.title("Variance Test")
+
+msg_on = False
+Varx = StringVar()
+
+label = Label(window, textvariable=Varx,
+              fg="blue", bg="lightyellow",
+              font="Verdana 16 bold", 
+              width=25, height=2)
+label.pack()
+
+btn = Button(window, text="Hit", command=btn_hit)
+btn.pack()
+
+window.mainloop()
+
 print("----------------------------------------", 'demo', "-"*40)

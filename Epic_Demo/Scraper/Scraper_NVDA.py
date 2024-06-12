@@ -99,18 +99,24 @@ file_path = os.path.join(os.path.dirname(__file__), 'NVDA.csv')
 # Read CSV file
 df = pd.read_csv(file_path)
 
-# Data processing
+# 確保「日期」列的格式正確
 df['日期'] = pd.to_datetime(df['日期'], format='%Y-%m-%d')
+
+# 強制將「收市」列轉換為字符串類型
+df['收市'] = df['收市'].astype(str)
 df['收市'] = df['收市'].str.replace(',', '').astype(float)
+
+# 強制將「成交量」列轉換為字符串類型
+df['成交量'] = df['成交量'].astype(str)
 df['成交量'] = df['成交量'].str.replace('M', '').astype(float)
 
 # Create the plot
 fig, ax1 = plt.subplots(figsize=(10, 6))
 
-# Plot opening prices
+# Plot closing prices
 ax1.set_xlabel('Date')
-ax1.set_ylabel('close', color='tab:blue')
-ax1.plot(df['日期'], df['收市'], color='tab:blue', label='close')
+ax1.set_ylabel('Close', color='tab:blue')
+ax1.plot(df['日期'], df['收市'], color='tab:blue', label='Close')
 ax1.tick_params(axis='y', labelcolor='tab:blue')
 
 # Create a second y-axis for volume

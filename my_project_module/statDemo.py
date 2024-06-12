@@ -28,6 +28,7 @@ class StatisticsDemo:
         try:
             bound = descriptive_stats.bound(confidence_level)
             print("The mean (\u03BC) estimate (\u03C3 unknown) {}% Confidence Interval: [{:.2f}, {:.2f}]".format(confidence_level, bound[0], bound[1]))
+            # print(f"The mean (\u03BC) estimate (\u03C3 unknown) {confidence_level}% Confidence Interval: [{bound[0]:.2f}, {bound[1]:.2f}]") 
         except ValueError as e:
             print("Error calculating confidence interval with unknown sigma:", e)
         # Estimate Mean (Sigma known)

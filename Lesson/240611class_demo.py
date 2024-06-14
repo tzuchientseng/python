@@ -90,24 +90,3 @@ x.balance()
 x.transfer(35000)
 
 print("----------------------------------------", 'demo', "-"*40)
-from mpl_toolkits.mplot3d import axes3d
-import matplotlib.pyplot as plt
-import numpy as np
-
-# 取得測試資料
-X, Y, Z = axes3d.get_test_data(0.05)
-
-# 建立 2 個子圖
-fig, ax = plt.subplots(1, 2, figsize=(8, 4), subplot_kw={'projection': '3d'})
-
-# 繪製曲線表面圖
-ax[0].plot_surface(X, Y, Z, cmap="bwr")  # cmap設置顏色新層為 藍-白-紅
-ax[0].set_title('Draw curve surface plot', fontsize=7, color='gray')
-
-# 繪製曲線框線圖
-ax[1].plot_wireframe(X, Y, Z, color='g')
-ax[1].set_title('Draw curve frame line drawing', fontsize=7, color='gray')
-
-plt.show()
-
-print("----------------------------------------", 'demo', "-"*40)

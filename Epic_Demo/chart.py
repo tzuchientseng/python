@@ -327,3 +327,73 @@ plt.grid(axis='y', linestyle='--', alpha=0.7)  # add grid lines for the y-axis
 
 plt.tight_layout()  # adjust layout to make room for the labels
 plt.show()
+
+print("----------------------------------------", 'demo', "-"*40)
+from mpl_toolkits.mplot3d import axes3d
+import matplotlib.pyplot as plt
+import numpy as np
+
+# 取得測試資料
+X, Y, Z = axes3d.get_test_data(0.05)
+
+# 建立 2 個子圖
+fig, ax = plt.subplots(1, 2, figsize=(8, 4), subplot_kw={'projection': '3d'})
+
+# 繪製曲線表面圖
+ax[0].plot_surface(X, Y, Z, cmap="bwr")  # cmap設置顏色新層為 藍-白-紅
+ax[0].set_title('Draw curve surface plot', fontsize=7, color='gray')
+
+# 繪製曲線框線圖
+ax[1].plot_wireframe(X, Y, Z, color='g')
+ax[1].set_title('Draw curve frame line drawing', fontsize=7, color='gray')
+
+plt.show()
+
+print("----------------------------------------", 'demo', "-"*40)
+import matplotlib.pyplot as plt
+import numpy as np
+
+def f(x, y):
+    return (1.2-x**2+y*5)*np.exp(-x**2-y**2)
+
+x = np.linspace(-3.0, 3.0, 100)  # 模擬 生成 -3 到 3 之間 100的數據
+y = np.linspace(-3.0, 3.0, 100)
+
+X, Y = np.meshgrid(x, y)  # 將上述生成的數據形成座標
+Z = f(X, Y)  # 將座標帶入函數
+
+# 建立 2 個子圖
+fig, ax = plt.subplots(1, 2, figsize=(8, 4))
+
+# 繪製等高圖
+con = ax[0].contourf(X, Y, Z, cmap='Greens')  # 填充輸出圖
+plt.colorbar(con, ax=ax[0])  # 加入顏色條(左圖右邊的長條)
+oval = ax[0].contour(X, Y, Z, colors='b')  # 輸出圖
+ax[0].clabel(oval, colors='b')  # 增加高度標記
+ax[0].set_title('等高圖', fontsize=16, color='b')
+
+# 繪製等高圖 level=12
+ax[1].contourf(X, Y, Z, 12, cmap='Greens')  # 填充輸出圖
+oval = ax[1].contour(X, Y, Z, 12, colors='b')  # 輸出圖
+ax[1].clabel(oval, colors='b')  # 增加高度標記
+ax[1].set_title('等高圖level=12', fontsize=16, color='b')
+
+plt.show()
+
+print("----------------------------------------", 'demo', "-"*40)
+import matplotlib.pyplot as plt
+import numpy as np
+
+z = np.linspace(0, 1, 300)  # z 軸值
+x = z * np.sin(30 * z)      # x 軸值
+y = z * np.cos(30 * z)      # y 軸值
+colors = x + y              # 色彩是沿 x + y 累增
+
+# 建立 2 個子圖
+fig, ax = plt.subplots(1, 2, figsize=(8, 4), subplot_kw={'projection': '3d'})
+ax[0].scatter(x, y, z, c=colors)  # 繪製左圖
+ax[1].scatter(x, y, z, c=colors, cmap='hsv')  # 繪製右圖
+ax[1].set_axis_off()  # 關閉軸線
+plt.show()
+
+print("----------------------------------------", 'demo', "-"*40)

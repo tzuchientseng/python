@@ -4,6 +4,18 @@
 3.刻度調整(xticks, x最大最小與y最大最小, 網格)
 4.文字加入 show()
 """
+"""
+plt.rcParams['font.sans-serif'] = ['Microsoft YaHei'] 和 plt.rcParams['font.family']='Microsoft JhengHei' 的差別在於設定的字型類型和具體使用的字型名稱：
+
+字型類型：
+
+plt.rcParams['font.sans-serif'] 是設定無襯線字型的參數，當你使用無襯線字型時（例如 plt.rcParams['font.family'] = 'sans-serif'），它會使用你設定的 Microsoft YaHei。
+plt.rcParams['font.family'] 是設定整體字型家族的參數，不僅限於無襯線字型。它可以是任何字型家族，例如 serif（襯線字型）、sans-serif（無襯線字型）、monospace（等寬字型）等。
+具體字型名稱：
+
+Microsoft YaHei 是微軟提供的一種無襯線字型，適合用於顯示簡體中文。
+Microsoft JhengHei 是微軟提供的一種黑體字型，專門用於顯示繁體中文。
+"""
 print("----------------------------------------", 'demo-plot', "-"*40)
 import matplotlib.pyplot as plt
 
@@ -12,7 +24,8 @@ BMW = [4000, 3590, 4423]
 Lexus = [5200, 4930, 5350]
 
 years = [2021, 2022, 2023]
-
+plt.rcParams['font.family']='Microsoft JhengHei'#建立中文字體
+# plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']
 plt.xticks(years)
 plt.legend(loc='best')  
 
@@ -396,4 +409,89 @@ ax[1].scatter(x, y, z, c=colors, cmap='hsv')  # 繪製右圖
 ax[1].set_axis_off()  # 關閉軸線
 plt.show()
 
-print("----------------------------------------", 'demo', "-"*40)
+print("----------------------------------------", 'demo-kbar', "-"*40)
+import csv
+import matplotlib.pyplot as plt
+
+x = 'XXX.csv'
+
+with open(x, encoding='utf-8') as y:
+    z = csv.reader(y)
+    a = list(z)
+
+def kbar(Open, Close, High, Low, Pos):
+    if Close > Open:
+        color = 'red'
+        height = Close - Open
+        bottom = Open
+    else:
+        color = 'green'
+        height = Open - Close
+        bottom = Close
+    
+    plt.bar(Pos, height=height, bottom=bottom, width=0.8, color=color)
+    plt.vlines(Pos, High, Low, color)
+
+day = []
+for i in range(1, len(a)):
+    day.append(a[i][0])
+    kbar(float(a[i][1]), float(a[i][4]), float(a[i][2]), float(a[i][3]), i)
+
+plt.rcParams['font.family'] = 'Microsoft JhengHei'
+plt.xticks(range(len(day)), day)
+plt.grid()
+plt.title('2330 台積電蠟燭 K線圖')
+plt.xlabel('日期')
+plt.ylabel('股價')
+plt.show()
+
+print("----------------------------------------", 'demo-kbar', "-"*40)
+# pip install mplfinance
+import pandas as pd
+import mplfinance as mpf
+
+# 並且包含標題：Date,Open,High,Low,Close,Volume
+file_path = 'XXX.csv'
+
+# 讀取CSV文件
+df = pd.read_csv(file_path, index_col=0, parse_dates=True)
+
+# 檢查讀取的數據
+print(df.head())
+
+# 繪製K線圖
+mpf.plot(df, type='candle', style='charles', title='2330 台積電蠟燭 K線圖', ylabel='股價', volume=True)
+
+print("----------------------------------------", 'demo-kbar', "-"*40)
+import matplotlib.pyplot as plt
+import numpy as np
+
+# 標籤名稱
+labels = ['類別1', '類別2', '類別3', '類別4']
+# 每組中的數據
+data1 = [4, 7, 3, 5]
+data2 = [2, 4, 6, 4]
+data3 = [3, 5, 4, 6]
+
+# 設置X軸的位置
+x = np.arange(len(labels))  # [0, 1, 2, 3]
+width = 0.2  # 長條的寬度
+
+fig, ax = plt.subplots()
+
+# 繪製每組的長條
+rects1 = ax.bar(x - width, data1, width, label='數列1')
+rects2 = ax.bar(x, data2, width, label='數列2')
+rects3 = ax.bar(x + width, data3, width, label='數列3')
+
+# 添加一些文字標籤
+ax.set_xlabel('類別')
+ax.set_ylabel('數值')
+ax.set_title('分組長條圖')
+ax.set_xticks(x)
+ax.set_xticklabels(labels)
+ax.legend()
+
+fig.tight_layout()
+
+plt.show()

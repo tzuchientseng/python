@@ -68,6 +68,7 @@ class StatisticsDemo:
         
         x = [_ for _ in range(1, len(data) + 1)]
         plt.plot(x, data, 'y-*', lw=2, label="data")
+        plt.rcParams['font.family']='Microsoft JhengHei'#建立中文字體
         plt.legend(loc="best")       
         plt.title("Descriptive Statistics")
         plt.xlabel("x")

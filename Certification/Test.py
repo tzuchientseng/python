@@ -404,6 +404,30 @@ try:
 except ValueError as e:
     print(e)
 
+
+print("----------------------------------------", 'Test', "-"*40)
+number = 777  # 定義一個整數
+binary_representation = bin(number)[2:]
+print("二進位表示（無前綴）：", binary_representation)
+octal_representation = oct(number)[2:]
+print("八進位表示（無前綴）：", octal_representation)
+hexadecimal_representation = hex(number)[2:]
+print("十六進位表示（無前綴）：", hexadecimal_representation)
+decimal_representation = int(number, n) # n 表進位方式
+
+print("----------------------------------------", 'Test', "-"*40)
+card_values = {'A': 1, 'J': 11, 'Q': 12, 'K': 13}
+card_values = sorted(card_values.items(), key=lambda x:x[1], reverse=False)
+print(card_values)
+
+print("----------------------------------------", 'Test', "-"*40)
+import os
+fn = os.path.join(os.path.dirname(__file__), 'number.txt')
+
+with open(fn, 'r', encoding="utf-8") as fobj:
+    list_ = [int(word.strip()) for word in fobj.read().split()]
+print(sum(list_))
+
 print("----------------------------------------", 'Test', "-"*40)
 import os
 fn = os.path.join(os.path.dirname(__file__), 'file.txt')
@@ -436,25 +460,68 @@ print("==== After the replacement ====")
 with open(fn, 'r') as file:
     print(file.read())
 
-print("----------------------------------------", 'Test', "-"*40)
-import os
-fn = os.path.join(os.path.dirname(__file__), 'number.txt')
-
-with open(fn, 'r', encoding="utf-8") as fobj:
-    list_ = [int(word.strip()) for word in fobj.read().split()]
-print(sum(list_))
 
 print("----------------------------------------", 'Test', "-"*40)
-number = 777  # 定義一個整數
-binary_representation = bin(number)[2:]
-print("二進位表示（無前綴）：", binary_representation)
-octal_representation = oct(number)[2:]
-print("八進位表示（無前綴）：", octal_representation)
-hexadecimal_representation = hex(number)[2:]
-print("十六進位表示（無前綴）：", hexadecimal_representation)
-decimal_representation = int(number, n) # n 表進位方式
+# 讀取文件並計算字數
+def count_words_in_file(filename):
+    try:
+        with open(filename, 'r', encoding='utf-8') as file:
+            content = file.read()
+        words = content.split()
+        word_count = len(words)
+        return word_count
+    except FileNotFoundError:
+        return "檔案不存在"
+
+# 使用函數
+filename = 'example.txt'  # 確保這個文件在你的文件夾中
+print(f'文件中的字數為: {count_words_in_file(filename)}')
 
 print("----------------------------------------", 'Test', "-"*40)
-card_values = {'A': 1, 'J': 11, 'Q': 12, 'K': 13}
-card_values = sorted(card_values.items(), key=lambda x:x[1], reverse=False)
-print(card_values)
+# 寫入文件
+def write_to_file(filename, content):
+    with open(filename, 'w', encoding='utf-8') as file:
+        file.write(content)
+
+# 使用函數
+content = "這是一段範例文本。"
+filename = 'new_example.txt'
+write_to_file(filename, content)
+print(f'文本已寫入到文件 {filename}')
+
+print("----------------------------------------", 'Test', "-"*40)
+# 附加到文件
+def append_to_file(filename, content):
+    with open(filename, 'a', encoding='utf-8') as file:
+        file.write(content)
+
+# 使用函數
+content = "\n這是追加的文本。"
+filename = 'example.txt'  # 確保這個文件在你的文件夾中
+append_to_file(filename, content)
+print(f'文本已附加到文件 {filename}')
+
+print("----------------------------------------", 'Test', "-"*40)
+with open('example.txt', 'r', encoding='utf-8') as file:
+    content = file.read()  # 讀取整個文件
+    print(content)
+with open('example.txt', 'r', encoding='utf-8') as file:
+    line = file.readline()  # 讀取一行
+    print(line)
+with open('example.txt', 'r', encoding='utf-8') as file:
+    lines = file.readlines()  # 讀取所有行並以列表形式返回
+    print(lines)
+filename = 'example.txt'
+with open(filename, 'r', encoding='utf-8') as file:
+    print("讀取整個文件:")
+    print(file.read())  # 讀取整個文件
+    file.seek(0)  # 回到文件開始位置
+
+    print("\n讀取第一行:")
+    print(file.readline())  # 讀取第一行
+
+    file.seek(0)  # 回到文件開始位置
+    print("\n讀取所有行:")
+    print(file.readlines())  # 讀取所有行並返回一個列表
+
+print("----------------------------------------", 'Test', "-"*40)

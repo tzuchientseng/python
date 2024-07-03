@@ -97,6 +97,7 @@ print("----------------------------------------", 'demo-write()', "-"*40)
 fn = 'd:\\coding\\python\\temp\\test.py'
 string = 'print(\'i love python.\')'
 
+# with open(fn, 'w+', encoding='cp950') as fobj: #檔案不再則新增
 with open(fn, 'w', encoding='cp950') as fobj:
     print(fobj.write(string)) #only str()
 

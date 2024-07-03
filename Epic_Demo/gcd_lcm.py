@@ -1,3 +1,9 @@
+print("----------------------------------------", 'Test', "-"*40)
+import math
+print(math.gcd(3,4))
+print(math.lcm(3,4))
+
+print("----------------------------------------", 'Test', "-"*40)
 def gcd(n1, n2):
     init = 1
     i = 2
@@ -9,6 +15,7 @@ def gcd(n1, n2):
 x, y = map(int, input("Enter two number: \n").split())
 print("The Greatest Common Divisor(窮舉): ", gcd(x, y))
 
+print("----------------------------------------", 'Test', "-"*40)
 def gcd2(a, b):
     if a < b:
         a, b = b, a 
@@ -20,6 +27,7 @@ def gcd2(a, b):
 x, y = map(int, input("Enter two number: \n").split())
 print("The Greatest Common Divisor(輾轉): ", gcd(x, y))
 
+print("----------------------------------------", 'Test', "-"*40)
 def gcd_recursive(x, y):
     return x if y == 0 else gcd(y, x % y)
 def lcm(x, y):
@@ -27,3 +35,5 @@ def lcm(x, y):
 x, y = map(int, input("Enter two number: \n").split())
 print("The Greatest Common Divisor(遞迴): ", gcd_recursive(x, y))
 print("The Least Common Multiple: ", lcm(x, y))
+
+print("----------------------------------------", 'Test', "-"*40)

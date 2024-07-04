@@ -74,6 +74,19 @@ hex_str_cleaned = re.sub(r'^0x', '', hex_str).upper()
 hex_str_cleaned = hex_str.replace('0x', '', 1).upper() #1表次數
 print(hex_str_cleaned)
 
+print("----------------------------------------", 'Test', "-"*40)
+number = 777  # 定義一個整數
+binary_representation = bin(number)[2:]
+print("二進位表示（無前綴）：", binary_representation)
+octal_representation = oct(number)[2:]
+print("八進位表示（無前綴）：", octal_representation)
+hexadecimal_representation = hex(number)[2:]
+print("十六進位表示（無前綴）：", hexadecimal_representation)
+# decimal_representation = int(str(number), n) # n 表進位方式
+"""
+x = "0xA"
+print(int(x, 16))
+"""
 
 print("----------------------------------------", 'Test', "-"*40)
 try:
@@ -403,17 +416,6 @@ try:
 except ValueError as e:
     print(e)
 
-
-print("----------------------------------------", 'Test', "-"*40)
-number = 777  # 定義一個整數
-binary_representation = bin(number)[2:]
-print("二進位表示（無前綴）：", binary_representation)
-octal_representation = oct(number)[2:]
-print("八進位表示（無前綴）：", octal_representation)
-hexadecimal_representation = hex(number)[2:]
-print("十六進位表示（無前綴）：", hexadecimal_representation)
-decimal_representation = int(number, n) # n 表進位方式
-
 print("----------------------------------------", 'Test', "-"*40)
 #type1
 _str  = list(input())
@@ -545,4 +547,64 @@ with open(filename, 'r', encoding='utf-8') as file:
     print("\n讀取所有行:")
     print(file.readlines())  # 讀取所有行並返回一個列表
 
-print("----------------------------------------", 'Test', "-"*40)
+print("----------------------------------------", 'Test-assignment expressions(海象算符)', "-"*40)
+while text := input('Enter string:'): #empty string regards as False
+    print('String:', text)
+print("End") #Enter space to break
+
+def run_timing():
+    total_time = 0.0
+    number_of_runs = 0
+    while run_time := input('輸入跑10公里的時間(按Enter結束):'):
+        try:
+            run_time_value = float(run_time)
+            total_time += run_time_value
+            number_of_runs += 1
+        except Exception as e:
+            print('Error: ', e)
+
+    if number_of_runs > 0:
+        average_time = (total_time / number_of_runs)
+    else:
+        average_time = 0.0
+    print(f"跑{number_of_runs}次平均時間為{average_time:.3f}分鐘")
+
+run_timing()
+
+print("----------------------------------------", 'Test-reverse', "-"*40)
+#String method1
+original_string = "hello"
+reversed_string = original_string[::-1]
+print(reversed_string)
+
+#String method2
+original_string = "hello"
+reversed_string = ''.join(reversed(original_string))
+print(reversed_string)
+
+#String method3
+def reverse_string_loop(s):
+    reversed_str = ''
+    for char in s:
+        reversed_str = char + reversed_str
+    return reversed_str
+
+#Number method1
+original_number = 12345
+reversed_number = int(str(original_number)[::-1])
+print(reversed_number)
+
+#Number method2
+original_number = 12345
+reversed_number = int(''.join(reversed(str(original_number))))
+print(reversed_number)
+
+#Number method3
+def reverse_number_math(n):
+    reversed_num = 0
+    while n > 0:
+        reversed_num = reversed_num * 10 + n % 10
+        n //= 10
+    return reversed_num
+
+print("----------------------------------------", 'Test-reverse', "-"*40)

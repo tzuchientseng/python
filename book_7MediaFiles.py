@@ -253,7 +253,7 @@ qr = qrcode.QRCode(
     box_size=10,
     border=4  # 預設為 4
 )
-qr.add_data('https://tzuchientseng.github.io/sunny.github.io/')
+qr.add_data('https://sunnytseng.com/')
 qr.make(fit=True)
 img = qr.make_image(fill_color='gray')
 

@@ -1,3 +1,15 @@
+def Medain(a, b):
+    sum_list = a + b
+    sum_list.sort()
+    if len(sum_list) % 2 == 1:
+        return sum_list[(len(sum_list) // 2)] 
+    else: 
+        mid = len(sum_list) // 2
+        return (sum_list[mid - 1] + sum_list[mid]) / 2 
+list_1 = [1, 2, 4, 8, 4]
+list_2 = [43, 34, 3, 34, 45]
+print(Medain(list_1, list_2))
+
 class Solution:
     def findMedianSortedArrays(self, nums1, nums2):
         if len(nums1) > len(nums2):
@@ -73,15 +85,3 @@ public class MedianCalculator {
 
 }
 """
-
-def Medain(a, b):
-    sum_list = a + b
-    sum_list.sort()
-    if len(sum_list) % 2 == 1:
-        return sum_list[(len(sum_list) // 2)] 
-    else: 
-        mid = len(sum_list) // 2
-        return (sum_list[mid - 1] + sum_list[mid]) / 2 
-list_1 = [1, 2, 4, 8, 4]
-list_2 = [43, 34, 3, 34, 45]
-print(Medain(list_1, list_2))

@@ -20,6 +20,31 @@ print("|%-7.2f %-7.2f|" % (c, d))
 """
 
 print("----------------------------------------", 'Test', "-"*40)
+string = "hello"
+index = string.index('e')  # 返回 1
+str_ = "hello world"
+positions = [i for i, char in enumerate(str_) if char == 'o']  # 返回 [4, 7]
+"""
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        String s = "hello world";
+        char target = 'o';
+        ArrayList<Integer> positions = new ArrayList<Integer>();
+        int index = s.indexOf(target);  // 首次找到字符的索引
+        
+        while (index >= 0) {
+            positions.add(index);
+            index = s.indexOf(target, index + 1);  // 从上一个找到的位置之后开始搜索
+        }
+
+        System.out.println(positions);  // 输出所有'o'字符的索引位置
+    }
+}
+"""
+
+print("----------------------------------------", 'Test', "-"*40)
 import math
 # 0 coordinate
 x2, y2 = 0, 0
@@ -607,4 +632,4 @@ def reverse_number_math(n):
         n //= 10
     return reversed_num
 
-print("----------------------------------------", 'Test-reverse', "-"*40)
+print("----------------------------------------", 'Test', "-"*40)

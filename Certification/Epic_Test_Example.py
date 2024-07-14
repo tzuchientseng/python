@@ -596,7 +596,7 @@ def run_timing():
 
 run_timing()
 
-print("----------------------------------------", 'Test-reverse', "-"*40)
+print("----------------------------------------", 'Test-reverse String and Number', "-"*40)
 #String method1
 original_string = "hello"
 reversed_string = original_string[::-1]
@@ -632,4 +632,16 @@ def reverse_number_math(n):
         n //= 10
     return reversed_num
 
-print("----------------------------------------", 'Test', "-"*40)
+print("----------------------------------------", 'Test-Different char', "-"*40)
+seq1 = 'atgtcttcgcaagactcaaaaaata'
+seq2 = 'atgtcttcgcaagactaaaaaata'
+
+zip_seqs = zip(seq1, seq2)
+# print(list(zip_seqs))
+
+enum_seqs = enumerate(zip_seqs)
+# print(list(enum_seqs))
+
+for i, (a, b) in enum_seqs:
+    if a != b:
+        print(f'index: {i}')

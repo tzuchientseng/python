@@ -27,11 +27,11 @@ years = [2021, 2022, 2023]
 plt.rcParams['font.family']='Microsoft JhengHei'#建立中文字體
 # plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']
 plt.xticks(years)
-plt.legend(loc='best')  
 
 plt.plot(years, Benz, '-.*', label='Benz')
 plt.plot(years, BMW, '-o', label='BMW')
 plt.plot(years, Lexus, '-v', label='Lexus')
+plt.legend(loc='best') # Adding legend with (label)
 
 plt.title("Sales Report", fontsize=24)
 plt.xlabel("Year", fontsize=14)
@@ -39,7 +39,6 @@ plt.ylabel("Number of Sales", fontsize=14)
 plt.grid(True)  # Adding grid for better readability
 plt.tick_params(axis='both', which='major', labelsize=12, labelcolor='gray')  # Customizing tick parameters
 
-plt.legend()  # Adding legend
 
 plt.show()
 

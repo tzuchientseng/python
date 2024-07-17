@@ -79,3 +79,67 @@ public class PigLatin {
 }
 """
 
+print("----------------------------------------", 'Test', "-"*40)
+# https://www.flag.com.tw/Redirect/F1750/10
+def mysum(*items):
+    if not items:
+        return items
+    output = items[0]
+    for item in items[1:]:
+        output += item
+    return output
+
+print(mysum())
+print(mysum(10, 20, 30, 40))
+print(mysum('abc', 'd', 'e'))
+print(mysum([10, 20, 30], [40, 50], [60]))
+
+print("----------------------------------------", 'Test', "-"*40)
+# https://www.flag.com.tw/Redirect/F1750/11
+people = [
+    ('Joe', 'Biden', 'president@usa.gov'),
+    ('Emmanuel', 'Macron', 'president@france.gov'),
+    ('Justin', 'Trudeau', 'primeminister@canada.gov'),
+    ('Angela', 'Merkel', 'primeminister@germany.gov'),
+    ('Jacinda', 'Ardern', 'primeminister@newzealand.gov')
+    ]
+
+for person in sorted(people, key=lambda d: (d[1], d[0])):
+    print(f'{person[1]}, {person[0]}: {person[2]}')
+
+print("----------------------------------------", 'Test', "-"*40)
+# https://www.flag.com.tw/Redirect/F1750/12
+import operator
+
+def sorted_grades(grades):
+    grades.sort(key=operator.itemgetter(2), reverse=True)
+    output = []
+    for first, last, grade in grades:
+        output.append(f'{last:12s}{first:10s}{grade:.1f}')
+    return '\n'.join(output)
+
+grades = [
+    ('Alice', 'Wooding', 89),
+    ('Bob', 'Johnson', 86),
+    ('Cindy', 'Letterman', 93),
+    ('David', 'Moor', 86),
+    ('Eddie', 'Williams', 91)
+    ]
+
+print(sorted_grades(grades))
+
+print("----------------------------------------", 'Test', "-"*40)
+# https://www.flag.com.tw/Redirect/F1750/13
+import operator
+
+def most_repeated_letter(word):
+    letters = list(set(word))
+    letters_count = []
+    for letter in letters:
+        letters_count.append((letter, word.count(letter)))
+    result = sorted(letters_count, key=operator.itemgetter(1))[-1]
+    print(f'{result[0]} 重複了 {result[1]} 次')
+
+most_repeated_letter('independence')
+
+print("----------------------------------------", 'Test', "-"*40)

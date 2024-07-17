@@ -22,6 +22,8 @@ print(square(10))
 #lambda
 square = lambda x: x ** 2
 print(square(4))
+sqrt = lambda x: x ** 0.5
+print(sqrt(16))
 
 # demo 2
 print("----------------------------------------", 'demo', "-"*40)

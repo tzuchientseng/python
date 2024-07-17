@@ -144,7 +144,6 @@ while True:
     if key == 'end':
         break
     dict2[key] = input('Value: ')
-# dict_ = {**dict1, **dict2}
 dict1.update(dict2)
 print("----print----")
 # sorted_dict = sorted(dict_.items(), key=lambda x: x[1], reverse=True) # 按照值進行排序，返回列表

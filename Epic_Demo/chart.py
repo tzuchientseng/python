@@ -1,10 +1,4 @@
 """
-1.Plotting data: x, y, 型態(線的樣式), 線名稱(label), legend loc (label)
-2.標題 X, y 名稱
-3.刻度調整(xticks, x最大最小與y最大最小, 網格)
-4.文字加入 show()
-"""
-"""
 plt.rcParams['font.sans-serif'] = ['Microsoft YaHei'] 和 plt.rcParams['font.family']='Microsoft JhengHei' 的差別在於設定的字型類型和具體使用的字型名稱：
 
 字型類型：

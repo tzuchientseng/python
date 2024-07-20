@@ -382,3 +382,5 @@ def wordcount(filename):
         print(f'{key}: {value}')
 
 wordcount('text.txt')
+
+print("----------------------------------------", 'Test', "-"*40)

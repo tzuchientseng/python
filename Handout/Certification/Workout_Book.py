@@ -384,3 +384,44 @@ def wordcount(filename):
 wordcount('text.txt')
 
 print("----------------------------------------", 'Test', "-"*40)
+#https://www.flag.com.tw/Redirect/F1750/21
+# 這個版本使用假 open() 和 StringIO 來模擬檔案物件,
+# 以便在 Python Tutor 執行
+
+# --------------------
+
+s = """Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts."""
+
+from io import StringIO
+
+class open:
+    def __init__(self, file, mode='r'):
+        self.f = StringIO(s)
+    
+    def __enter__(self):
+        return self.f
+    
+    def __exit__(self, *args):
+        if self.f:
+            self.f.close()
+
+# --------------------
+
+def find_longest_word(filename):
+    longest = ''
+    with open(filename, 'r') as f:
+        for line in f:
+            for word in line.replace('.', '').split():
+                if len(word) > len(longest):
+                    longest = word
+    return longest
+
+print(find_longest_word(f'text2.txt'))
+
+print("----------------------------------------", 'Test', "-"*40)

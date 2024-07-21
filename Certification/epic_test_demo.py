@@ -150,6 +150,21 @@ print("----print----")
 for i in sorted(dict1.keys()):
     print(i+': '+ dict1[i])
 
+print("----------------------------------------", 'Test-Assignment Expressions(指派運算式[海象運算符])', "-"*40)
+import pprint
+dict1 = {}
+dict2 = {}
+
+print("Create the dict1, input end to stop")
+while (key := input('key: ')) != 'end':
+    dict1[key] = input('Value: ')
+
+print("Create the dict2, input end to stop")
+while (key := input('key: ')) != 'end':
+    dict2[key] = input('Value: ')
+
+dict1 |= (dict2)
+pprint.pprint(dict1)
 print("----------------------------------------", 'Test', "-"*40)
 """
 ord()
@@ -477,19 +492,15 @@ print(sum(list_))
 
 print("----------------------------------------", 'Test', "-"*40)
 import os
-fn = os.path.join(os.path.dirname(__file__), 'file.txt')
-
-with open(fn, 'r', encoding="utf-8") as fobj:
-    print(fobj.read())
-
 # Requesting file name and strings for replacement from the user
 f_name = input("Enter the file name: ")
 str_old = input("Enter the old string to replace: ")
 str_new = input("Enter the new string: ")
 
+fn = os.path.join(os.path.dirname(__file__), f_name)
 # Reading the content of the file
 with open(fn, 'r') as file:
-    content = file.read()
+    content = file.read() #type is the string
 
 # Displaying content before replacement
 print("==== Before the replacement ====")
@@ -499,7 +510,8 @@ print(content)
 updated_content = content.replace(str_old, str_new)
 
 # Writing the updated content back to the file
-with open(fn, 'w') as file:
+# with open(fn, 'w') as file: #允許寫入
+with open(fn, 'w+') as file: #允許讀加上寫入
     file.write(updated_content)
 
 # Displaying content after replacement
@@ -644,5 +656,47 @@ enum_seqs = enumerate(zip_seqs)
 for i, (a, b) in enum_seqs:
     if a != b:
         print(f'index: {i}')
+
+print("----------------------------------------", 'Test', "-"*40)
+"""
+type 1
+"""
+matrix = [
+    [3, 8, 1],
+    [7, 4, 9],
+    [5, 6, 2]
+]
+
+# 初始化最大值及其索引
+max_value = matrix[0][0]
+max_index = (0, 0)
+
+# 遍歷整個矩陣來找出最大值及其索引
+for i in range(len(matrix)):
+    for j in range(len(matrix[i])):
+        if matrix[i][j] > max_value:
+            max_value = matrix[i][j]
+            max_index = (i, j)
+
+print(f"最大值是 {max_value}, 位置在 {max_index}")
+"""
+type 2
+"""
+matrix = [
+    [3, 8, 1],
+    [7, 4, 9],
+    [5, 6, 2]
+]
+
+# 找出最大值及其索引
+max_value = max(max(row) for row in matrix)
+max_index = [(i, row.index(max_value)) for i, row in enumerate(matrix) if max_value in row][0]
+
+print(f"最大值是 {max_value}, 位置在 {max_index}")
+
+"""
+Output:
+最大值是 9, 位置在 (1, 2)
+"""
 
 print("----------------------------------------", 'Test', "-"*40)

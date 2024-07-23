@@ -156,11 +156,13 @@ dict1 = {}
 dict2 = {}
 
 print("Create the dict1, input end to stop")
-while (key := input('key: ')) != 'end':
+# while (key := input('key: ')) != 'end':
+while (key := input('key: ').strip()) != 'end':
     dict1[key] = input('Value: ')
 
 print("Create the dict2, input end to stop")
-while (key := input('key: ')) != 'end':
+# while (key := input('key: ')) != 'end':
+while (key := input('key: ').strip()) != 'end':
     dict2[key] = input('Value: ')
 
 dict1 |= (dict2)

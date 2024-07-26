@@ -176,10 +176,12 @@ logging.debug('--end--')
 
 print("----------------------------------------", 'demo-debug', "-"*40)
 import logging
-# #disable logging
-# logging.disable(logging.CRITICAL) 
-# #or
-# logging.basicConfig(level=logging.CRITICAL)
+"""
+#disable logging
+logging.disable(logging.CRITICAL) 
+#or
+logging.basicConfig(level=logging.CRITICAL)
+"""
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s : %(message)s')

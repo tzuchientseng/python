@@ -1,4 +1,5 @@
 """
+https://www.youtube.com/watch?v=wm9yR1VspPs
 pip install matplotlib ipywidgets
 pip install notebook
 jupyter notebook

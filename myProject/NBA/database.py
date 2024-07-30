@@ -14,7 +14,7 @@ def create_connection():
             port='3306',
             user='root',
             password='open',
-            database='NBA'
+            database='NBA' #就不用多寫 USE `NBA
         )
         logging.info("資料庫連接成功")
         return connection

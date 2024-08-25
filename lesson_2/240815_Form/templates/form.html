@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Form</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h4>Bootstrap Form</h4>
+            </div>
+            <div class="card-body">
+                <form action="/" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="userid" class="form-label">帳號編號:</label>
+                        <input type="text" class="form-control" name="userid" value="B0001" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="userid2" class="form-label">帳號編號 (Disabled):</label>
+                        <input type="text" class="form-control" name="userid2" value="B0001" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">姓名: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="username" placeholder="請輸入姓名">
+                    </div>
+                    <div class="mb-3">
+                        <label for="userpwd" class="form-label">密碼:</label>
+                        <input type="password" class="form-control" name="userpwd" placeholder="請輸入密碼">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">電話:</label>
+                        <input type="text" class="form-control" name="phone" maxlength="10" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="mynum" class="form-label">數量:</label>
+                        <input type="number" class="form-control" name="mynum" value="1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="usremail" class="form-label">Email:</label>
+                        <input type="email" class="form-control" name="usremail">
+                    </div>
+                    <div class="mb-3">
+                        <label for="usrcolor" class="form-label">顏色:</label>
+                        <input type="color" class="form-control" name="usrcolor">
+                    </div>
+                    <div class="mb-3">
+                        <label for="mydate" class="form-label">日期:</label>
+                        <input type="date" class="form-control" name="mydate">
+                    </div>
+                    <div class="mb-3">
+                        <label for="mytime" class="form-label">時間:</label>
+                        <input type="time" class="form-control" name="mytime">
+                    </div>
+                    <div class="mb-3">
+                        <label for="mydatetime" class="form-label">日期時間:</label>
+                        <input type="datetime-local" class="form-control" name="mydatetime">
+                    </div>
+                    <div class="mb-3">
+                        <label for="mypic" class="form-label">請上傳圖片:</label>
+                        <input type="file" class="form-control" name="mypic" accept="image/jpeg, image/png">
+                    </div>
+                    <div class="mb-3">
+                        <label for="myfile" class="form-label">請上傳檔案:</label>
+                        <input type="file" class="form-control" name="myfile">
+                    </div>
+                    <div class="mb-3">
+                        <label for="myfile[]" class="form-label">請上傳多個檔案:</label>
+                        <input type="file" class="form-control" name="myfile[]">
+                        <input type="file" class="form-control mt-1" name="myfile[]">
+                    </div>
+                    <div class="mb-3">
+                        <label for="comment" class="form-label">留言檔案:</label>
+                        <textarea class="form-control" rows="5" name="comment" maxlength="500">留言內容</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">性別:</label>
+                        <br>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input" name="gender" value="1" checked>
+                            <label class="form-check-label">男生</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input" name="gender" value="2">
+                            <label class="form-check-label">女生</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">請勾選你最想要知道的資訊:</label>
+                        <br>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="info[]" value="1">
+                            <label class="form-check-label">html</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="info[]" value="2">Python
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="info[]" value="3">Java
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="info[]" value="4">PHP
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="select_one" class="form-label">選擇取貨方式:</label>
+                        <select class="form-select" name="select_one">
+                            <option>請選擇</option>
+                            <option value="0">7-11貨到付款</option>
+                            <option value="1">全家</option>
+                            <option value="2">來爾富</option>
+                            <option value="3">OK</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

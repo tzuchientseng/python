@@ -5,6 +5,7 @@ from flask_cors import CORS
 import logging
 import webbrowser
 import os
+import requests  # 用於發送 HTTP 請求
 
 # 設定日誌
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -12,6 +13,10 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 # 建立 Flask 應用
 app = Flask(__name__)
 CORS(app)
+
+# API Key 和目標 API URL
+API_KEY = 'd1a4f8c2b4f6431ba33e5c287eae0f3c6a8e7f3b2f4a6732b6e1f5d6e8f9b7c8'  # API Key
+API_URL = 'https://pacific-gorge-89138-1cc956d7f950.herokuapp.com'  # 目標 API 的 URL
 
 # 創建 MySQL 連接
 def create_connection(db_name=None):
@@ -148,10 +153,49 @@ def clear_tasks():
     else:
         return jsonify({'error': 'Failed to connect to database'}), 500
 
-# if __name__ == '__main__':
-    # app.run(debug=True)
+# 線上存檔路由
+@app.route('/save-online', methods=['POST'])
+def save_online():
+    data = request.json
+    username = data.get('username')
+    todos = data.get('todos')
+    completed = data.get('completed')
+
+    # 發送 POST 請求到 Heroku 上的 API 進行線上存檔
+    headers = {
+        'Authorization': f'Bearer {API_KEY}',
+        'Content-Type': 'application/json'
+    }
+    payload = {
+        'username': username,
+        'todos': todos,
+        'completed': completed
+    }
+    
+    response = requests.post(f'{API_URL}/save-tasks', headers=headers, json=payload)
+    
+    if response.status_code == 200:
+        return jsonify({'message': 'Tasks saved online successfully!'}), 200
+    else:
+        return jsonify({'error': 'Failed to save tasks online'}), response.status_code
+
+# 線上下載路由
+@app.route('/download-online', methods=['GET'])
+def download_online():
+    username = request.args.get('username')
+
+    # 發送 GET 請求到 Heroku 上的 API 進行線上下載
+    headers = {
+        'Authorization': f'Bearer {API_KEY}'
+    }
+    response = requests.get(f'{API_URL}/get-tasks?username={username}', headers=headers)
+    
+    if response.status_code == 200:
+        return jsonify(response.json()), 200
+    else:
+        return jsonify({'error': 'Failed to download tasks online'}), response.status_code
 
 if __name__ == '__main__':
     if os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
-        webbrowser.open("http://127.0.0.1:5000") #瀏覽器運行
-    app.run(debug=True)
+        webbrowser.open("http://127.0.0.1:7777")  # 指定端口 7777
+    app.run(debug=True, port=7777)  # 指定端口 7777 運行 Flask 應用

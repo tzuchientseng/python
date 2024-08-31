@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add event listener for Enter key
     document.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
+        // Confirm focus is not on noteTextarea
+        if (event.key === 'Enter' && (event.target !== noteTextarea || !noteTextarea)) {
             addTaskButton.click();
         }
     });
@@ -219,8 +220,16 @@ function initializeSortable() {
     });
 }
 
+function enterKeyListener(event) {
+    if (event.key === 'Enter' && (event.target !== noteTextarea || !noteTextarea)) {
+        addTaskButton.click();
+    }
+}
+
 function toggleNote() {
     if (todoContainer.style.display !== 'none') {
+        // Switch to Notebook and remove the listener for the Enter key
+        document.removeEventListener('keydown', enterKeyListener);
         todoContainer.style.display = 'none';
         mainTitle.textContent = 'Notebook';
         if (!noteContainer) {
@@ -230,6 +239,8 @@ function toggleNote() {
         }
         noteButton.textContent = 'To-Do List';
     } else {
+        // Switch back to the To-Do List and re-add the listener for the Enter key
+        document.addEventListener('keydown', enterKeyListener);
         showTodoView();
     }
 }

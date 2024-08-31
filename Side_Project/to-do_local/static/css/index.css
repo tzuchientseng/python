@@ -1,0 +1,26 @@
+.container {
+    margin-top: 50px;
+}
+
+.todo-container, .completed-container, .in-progress-container{
+    min-height: 300px;
+    height: auto;
+    max-height: 520px;
+    overflow-y: auto;
+}
+
+.blue-background-class {
+    background-color: #f0f0f0 !important;
+}
+
+.custom-mt {
+    margin-top: 2rem; /* Custom top margin */
+}
+
+/* Styling for the Notebook textarea */
+#note-container textarea {
+    height: 520px;
+    font-size: 1rem;
+    padding: 10px;
+}
+

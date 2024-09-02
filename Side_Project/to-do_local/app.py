@@ -8,7 +8,7 @@ from functools import wraps
 app = Flask(__name__)
 CORS(app)
 
-API_BASE_URL = "https://todo-notes-46615665f707.herokuapp.com"
+API_BASE_URL = "https://todo-notes-d24c2cb2c355.herokuapp.com/"
 TOKEN = None
 
 def login_and_get_token():

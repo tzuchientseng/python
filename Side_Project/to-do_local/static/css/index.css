@@ -2,7 +2,7 @@
     margin-top: 50px;
 }
 
-.todo-container, .completed-container, .in-progress-container{
+.todo-container, .completed-container, .in-progress-container {
     min-height: 300px;
     height: auto;
     max-height: 520px;
@@ -17,10 +17,22 @@
     margin-top: 2rem; /* Custom top margin */
 }
 
-/* Styling for the Notebook textarea */
-#note-container textarea {
-    height: 520px;
+/* Styling for the CodeMirror editor in Notebook */
+#note-container .CodeMirror {
+    height: 570px;
     font-size: 1rem;
-    padding: 10px;
 }
 
+#note-container .CodeMirror-scroll {
+    min-height: 520px;
+}
+
+/* Optional: Adjust padding for the editor content */
+#note-container .CodeMirror-lines {
+    padding: 10px 0;
+}
+
+/* Ensure the editor takes full width of its container */
+#note-container #editor {
+    width: 100%;
+}

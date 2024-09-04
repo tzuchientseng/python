@@ -7,7 +7,7 @@ const saveButton = document.getElementById('save-tasks');
 const addTaskButton = document.getElementById('add-task');
 const clearInProgressButton = document.getElementById('clear-in-progress');
 let noteContainer = null;
-let noteTextarea = null;
+let noteEditor = null;
 
 document.addEventListener('DOMContentLoaded', function() {
     // Focus on "Add Task" button
@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add event listener for Enter key
     document.addEventListener('keydown', function(event) {
-        // Confirm focus is not on noteTextarea
-        if (event.key === 'Enter' && (event.target !== noteTextarea || !noteTextarea)) {
+        // Confirm focus is not on noteEditor
+        if (event.key === 'Enter' && (!noteEditor || !noteEditor.hasFocus())) {
             addTaskButton.click();
         }
     });
@@ -86,7 +86,7 @@ function renderTasks(tasks, listId) {
 function saveTasks() {
     const todoTasks = Array.from(document.getElementById('todo-list').children).map(li => li.firstChild.textContent.trim());
     const inProgressTasks = Array.from(document.getElementById('in-progress-list').children).map(li => li.firstChild.textContent.trim());
-    const noteText = noteContainer ? noteContainer.querySelector('textarea').value : '';
+    const noteText = noteEditor ? noteEditor.getValue() : '';
 
     const data = {
         todo: JSON.stringify(todoTasks),
@@ -229,7 +229,7 @@ function initializeSortable() {
 }
 
 function enterKeyListener(event) {
-    if (event.key === 'Enter' && (event.target !== noteTextarea || !noteTextarea)) {
+    if (event.key === 'Enter' && (!noteEditor || !noteEditor.hasFocus())) {
         addTaskButton.click();
     }
 }
@@ -264,22 +264,63 @@ function createNoteContainer() {
     noteHeader.textContent = 'Notebook';
     const noteBody = document.createElement('div');
     noteBody.className = 'card-body';
-    noteTextarea = document.createElement('textarea');
-    noteTextarea.className = 'form-control';
-    noteTextarea.rows = 10;
-    noteBody.appendChild(noteTextarea);
+    const editorContainer = document.createElement('div');
+    editorContainer.id = 'editor';
+    noteBody.appendChild(editorContainer);
     noteCard.appendChild(noteHeader);
     noteCard.appendChild(noteBody);
     noteContainer.appendChild(noteCard);
     mainContent.appendChild(noteContainer);
+
+    // Initialize CodeMirror with Vim mode and custom settings
+    noteEditor = CodeMirror(editorContainer, {
+        lineNumbers: true,
+        theme: 'monokai',
+        mode: 'markdown',
+        keyMap: 'vim',
+        extraKeys: {
+            "Ctrl-S": function(cm) { saveTasks(); },
+            "Ctrl-N": function(cm) { cm.setOption('highlightSelectionMatches', false); },
+            "Ctrl-C": function(cm) { // Add Ctrl-C for copying text
+            const selectedText = cm.getSelection();
+            if (selectedText) {
+                navigator.clipboard.writeText(selectedText)
+                    .then(() => console.log('文本已成功複製到剪貼簿'))
+                    .catch(err => console.error('無法複製到剪貼簿:', err));
+            }
+            }
+        }
+    });
+
+    // Custom Vim key mappings
+    CodeMirror.Vim.map('jk', '<Esc>', 'insert');
+    // Start in insert mode
+    CodeMirror.Vim.handleKey(noteEditor, 'i');
+
+    // CodeMirror.Vim.map('t', 'ggVG', 'normal');
+    // Override yank operation
+    // const originalYankFunction = CodeMirror.Vim.getRegisterController().getRegister('yank').set;
+    // CodeMirror.Vim.getRegisterController().getRegister('yank').set = function(text, linewise, blockwise) {
+    //     originalYankFunction.call(this, text, linewise, blockwise);
+    //     navigator.clipboard.writeText(text).catch(err => console.error('Failed to copy to clipboard:', err));
+    // };
+    // Override paste operation
+    // CodeMirror.Vim.map('*p', ':pasteFromSystem<CR>', 'normal');
+    // CodeMirror.Vim.map('*P', ':pasteFromSystem<CR>', 'normal');
+    // CodeMirror.Vim.defineEx('pasteFromSystem', '', (cm) => {
+    //     navigator.clipboard.readText().then(text => {
+    //         const cursor = cm.getCursor();
+    //         cm.replaceRange(text, cursor);
+    //     }).catch(err => console.error('Failed to paste from clipboard:', err));
+    // });
 }
 
 function updateNoteContent(noteText) {
     if (!noteContainer) {
         createNoteContainer();
     }
-    if (noteTextarea) {
-        noteTextarea.value = noteText || '';
+    if (noteEditor) {
+        noteEditor.setValue(noteText || '');
     }
     noteContainer.style.display = 'none';
 }
@@ -287,8 +328,8 @@ function updateNoteContent(noteText) {
 function clearTasks() {
     document.getElementById('todo-list').innerHTML = '';
     document.getElementById('in-progress-list').innerHTML = '';
-    if (noteContainer) {
-        noteContainer.querySelector('textarea').value = '';
+    if (noteEditor) {
+        noteEditor.setValue('');
     }
 }
 

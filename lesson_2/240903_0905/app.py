@@ -16,3 +16,12 @@ for h1 in geth1_list:
 
 getp = soup.find('p').text
 print(getp)
+
+
+def myfn():
+    pass
+
+# print('name:', __name__) # __main__ or app (被呼叫)
+
+if __name__ == '__main__':
+    print('name:', __name__) # __main__

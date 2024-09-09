@@ -14,6 +14,13 @@
                 <tr>
                     <td>{{ name }}</td>
                     <td>{{ registrants[name] }}</td>
+                    <!-- sqlite db-->
+                    <td>{{ registants.name }}</td>
+                    <td>{{ registants.sport }}</td>
+                    <form action="/deregister" method="post">
+                        <input name='id' type="hidden" value="{{ regitrants.id}}">
+                        <button type="submit">Deregister</button>
+                    </form>                    
                 </tr>
             {% endfor %}
         </tbody>

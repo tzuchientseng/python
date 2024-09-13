@@ -1,0 +1,15 @@
+# 240911 django
+> 每個客戶要分別建立虛擬主機
+>> Anaconda
+>> VENV *virtual environment*
+>>>`python -m venv myenv`
+>>>`WINDOWS: myenv\Scripts\activate`
+>>>`UNIX/MacOS: source myenv/bin/activate`
+
+---
+# 建立專案
+1. `django-admin startproject webapp`
+2. `cd webapp`
+3. `python ./manage.py runserver` *按下TAB會自動補齊*
+
+---

@@ -1,4 +1,4 @@
-# 240911 django
+# django
 > 每個客戶要分別建立虛擬主機
 >> Anaconda
 >> VENV *virtual environment*
@@ -13,3 +13,5 @@
 3. `python ./manage.py runserver` *按下TAB會自動補齊*
 
 ---
+# 建立資料夾
+1. `python .\manage.py migrate`

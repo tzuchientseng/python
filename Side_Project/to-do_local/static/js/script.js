@@ -207,8 +207,14 @@ function initializeSortable() {
         animation: 150,
         ghostClass: 'blue-background-class',
         onEnd: function (evt) {
+            // 如果是拖到 in-progress-list 中，不需要再手動執行 completeTask
             if (evt.to.id === 'in-progress-list') {
-                completeTask(evt.item);
+                const button = evt.item.querySelector('button');
+                button.className = 'btn btn-sm btn-outline-danger';
+                button.textContent = 'Complete';
+                button.onclick = function () {
+                    evt.item.remove();
+                };
             }
         }
     });
@@ -218,15 +224,49 @@ function initializeSortable() {
         animation: 150,
         ghostClass: 'blue-background-class',
         onEnd: function (evt) {
+            // 如果是從 in-progress-list 移回 todo-list，恢復按鈕狀態
             if (evt.to.id === 'todo-list') {
                 const button = evt.item.querySelector('button');
                 button.className = 'btn btn-sm btn-outline-success';
                 button.textContent = 'In Progress';
-                button.onclick = () => completeTask(evt.item);
+                button.onclick = function () {
+                    const inProgressList = document.getElementById('in-progress-list');
+                    inProgressList.prepend(evt.item);  // 將項目移到 in-progress-list
+                };
             }
         }
     });
 }
+    
+// // Not Completed item 只能移動到 In Progress最上層
+// function initializeSortable() {
+//     new Sortable(document.getElementById('todo-list'), {
+//         group: 'shared',
+//         animation: 150,
+//         ghostClass: 'blue-background-class',
+//         onEnd: function (evt) {
+//             if (evt.to.id === 'in-progress-list') {
+//                 completeTask(evt.item);
+//             }
+//         }
+//     });
+
+//     new Sortable(document.getElementById('in-progress-list'), {
+//         group: 'shared',
+//         animation: 150,
+//         ghostClass: 'blue-background-class',
+//         onEnd: function (evt) {
+//             if (evt.to.id === 'todo-list') {
+//                 const button = evt.item.querySelector('button');
+//                 button.className = 'btn btn-sm btn-outline-success';
+//                 button.textContent = 'In Progress';
+//                 button.onclick = function () {
+//                     completeTask(evt.item);
+//                 };
+//             }
+//         }
+//     });
+// }
 
 function enterKeyListener(event) {
     if (event.key === 'Enter' && (!noteEditor || !noteEditor.hasFocus())) {

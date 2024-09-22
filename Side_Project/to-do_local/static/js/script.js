@@ -14,12 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
     addTaskButton.focus();
 
     // Add event listener for Enter key
-    document.addEventListener('keydown', function(event) {
-        // Confirm focus is not on noteEditor
-        if (event.key === 'Enter' && (!noteEditor || !noteEditor.hasFocus())) {
-            addTaskButton.click();
-        }
-    });
+    document.addEventListener('keydown', enterKeyListener);
+
+    // Add event listener for Tab key
+    document.addEventListener('keydown', tabKeyListener);
 
     // Add event listener for Ctrl+S
     document.addEventListener('keydown', function(event) {
@@ -28,6 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
             saveTasks();
         }
     });
+
+    // Add event listener for double click
+    // document.addEventListener('dblclick', disableTabListener);
 
     initializePage();
 });
@@ -274,6 +275,24 @@ function enterKeyListener(event) {
     }
 }
 
+function tabKeyListener(event) {
+    if (event.key === 'Tab' && (!noteEditor || !noteEditor.hasFocus() && !isVimModeActive())) {
+        event.preventDefault(); // Prevent default tab behavior
+        toggleNote();
+    }
+}
+
+function isVimModeActive() {
+    return noteEditor && noteEditor.getOption('keyMap') === 'vim' && noteEditor.state.vim && noteEditor.state.vim.insertMode;
+}
+
+function disableTabListener() {
+    document.removeEventListener('keydown', tabKeyListener);
+    setTimeout(() => {
+        document.addEventListener('keydown', tabKeyListener);
+    }, 1000); // Re-enable after 1 second
+}
+
 function toggleNote() {
     if (todoContainer.style.display !== 'none') {
         // Switch to Notebook and remove the listener for the Enter key
@@ -291,6 +310,8 @@ function toggleNote() {
         document.addEventListener('keydown', enterKeyListener);
         showTodoView();
     }
+    // Ensure tabKeyListener is always active
+    document.addEventListener('keydown', tabKeyListener);
 }
 
 function createNoteContainer() {

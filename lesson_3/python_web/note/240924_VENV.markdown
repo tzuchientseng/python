@@ -1,0 +1,65 @@
+# 網站規劃
+e:\server
+mysql
+wordpress
+tomcat
+pyweb
+💡
+# Pycharm 設定
+1. new Project
+
+# django
+> 每個客戶要分別建立虛擬主機
+>> Anaconda
+>> VENV *virtual environment*
+>>>`python -m venv myenv`
+>>>`WINDOWS: myenv\Scripts\activate`
+>>>`UNIX/MacOS: source myenv/bin/activate`
+
+---
+# 建立專案
+1. `django-admin startproject webapp`
+2. `cd webapp`
+3. `python ./manage.py runserver` *按下TAB會自動補齊*
+
+---
+# 建立資料夾
+1. `python .\manage.py migrate`
+
+---
+# Anaconda
+1. 過於肥大
+2. 跟 qt 相衝 (好的呈現方式)
+3. 跟 AI cuda11.8 不合：只適用於 python3.8/3.9，pytorch也是
+tkinter：玩具(matplotlib 使用tkinter)
+
+(政府系統 不推薦)Windwows IIS MSSQL ASP.NET
+
+Linux Apache->Nginx MySQL PHP
+
+Pycharm 設定
+1. new Project
+
+2. 第一個 location : e:\server\20230921 ： 整個路徑，絕對不可以用中文
+
+  但裏面的檔案，.py 或 .html 可以使用中文
+
+  因為 pip install 安裝套件時，不認識中文
+
+3. 注意一下第二個 location 有沒有手動加 \venv
+
+4. 改成白底黑字：File/settings/Apperance/Theme/Intellij Light
+放大字體：File/Settings/Editor/General/
+Change font size with control + mouse wheel
+安裝套件時 (pip install) 會發生 activate.ps1 無法載入的問題
+a. 開始/Windows PowerShell/Windows PowerShell 按右鍵以系統管理員身份執行，啟動
+b. set-ExecutionPolicy remotesigned：再選 A(ll)
+c. 關閉 Pycharm，再重啟才會生效
+d. pip install numpy
+
+# djaongo 
+`cd pyweb`
+`django-admin startproject pyweb`
+`python manage.py runserver 0.0.0.0:7000`
+http://127.0.0.1:7000/ 或 http://localhost:7000/
+不要用 9000 port 那是給nginx聯繫 PHP 重要port

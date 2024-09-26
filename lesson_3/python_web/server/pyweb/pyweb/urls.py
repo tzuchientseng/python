@@ -16,7 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+import first, views
+import home.views as home
+import gallery.views as gallery
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('first', first.html),
+    path('second/', views.second),
+    path('third/', views.third),
+    path('third/', views.index),
+    path('', home.html), # html 不是副檔名是方法
+    path('gallery/', gallery.html),
 ]

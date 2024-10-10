@@ -1,5 +1,7 @@
 # 忽略虛擬環境
-myenv/
+/server/nginx/
+/server/myenv/
+
 
 # 忽略 Python 快取檔案
 __pycache__/

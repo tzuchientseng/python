@@ -1,0 +1,131 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <center> 銀行代碼 API: <br> https://raw.githubusercontent.com/wsmwason/taiwan-bank-code/master/data/taiwanBankCodeATM.json <br>
+            <table border=1>
+                <tr>
+                    <td>code</td>
+                    <td>name</td>
+                </tr>
+                <tbody id="row">
+                    <!-- <tr>
+                        <td>004</td>
+                        <td>臺灣銀行</td>
+                    </tr>
+                    <tr>
+                        <td>005</td>
+                        <td>臺灣土地銀行</td>
+                    </tr> -->
+                </tbody>
+            </table>
+        </center>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                fetch('https://raw.githubusercontent.com/wsmwason/taiwan-bank-code/master/data/taiwanBankCodeATM.json')
+                .then(response => response.json())
+                .then(info => {
+                    // Update table with the first row data
+                    document.getElementById('row').innerHTML = `
+                        <tr>
+                            <td>${info[0].code}</td>
+                            <td>${info[0].name}</td>
+                        </tr>
+                    `;
+
+                    let total_len = info.length;
+                    for(let i = 0; i < total_len; i++) {
+                        // Append new rows for each bank code
+                        document.getElementById('row').innerHTML += `
+                            <tr>
+                                <td>${info[i].code}</td>
+                                <td>${info[i].name}</td>
+                            </tr>
+                        `;
+                        console.log(i);
+                        console.log(info[i].code);
+                        console.log(info[i].name);
+                    }
+                })
+                .catch(error => {
+                    console.log("Request failed", error);
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                // Update table with new row data
+                // $("#row").html("<tr><td>123</td><td>ABC</td></tr>");
+                $.ajax({
+                    url: 'https://raw.githubusercontent.com/wsmwason/taiwan-bank-code/master/data/taiwanBankCodeATM.json',
+                    type: "get",
+                    dataType:"json",
+                    success: function (info) {
+                        // console.log(info);				
+                        // console.log('==========');				
+                        // console.log(info[0].code);				
+                        // console.log(info[0].name);
+                        // console.log(info[1].code);
+                        //console.log(info[1].name);
+                        $('#row').html(
+                            "<tr>" +
+                                "<td>" + info[0].code + "</td>" +
+                                "<td>" + info[0].name + "</td>" +
+                            "</tr>"
+                        )
+                        total_len = info.length;
+                        for(i=0; i<total_len; i++) {
+                            $("#row").append( // html 方法會取代掉
+                                "<tr>" +
+                                    "<td>" + info[i].code + " </td>" +
+                                    "<td>" + info[i].name + " </td>" +
+                                "</tr>"
+                            )
+                            console.log(i);
+                            console.log(info[i].code);
+                            console.log(info[i].name);
+                        }
+                    },
+                    error: function (data) {
+                        console.log("請求失敗");
+                    }
+                });
+            });
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                axios.get('https://raw.githubusercontent.com/wsmwason/taiwan-bank-code/master/data/taiwanBankCodeATM.json')
+                .then(response => {
+                    let info = response.data;
+
+                    // Update table with the first row data
+                    document.getElementById('row').innerHTML = `
+                        <tr>
+                            <td>${info[0].code}</td>
+                            <td>${info[0].name}</td>
+                        </tr>
+                    `;
+
+                    let total_len = info.length;
+                    for(let i = 0; i < total_len; i++) {
+                        // Append new rows for each bank code
+                        document.getElementById('row').innerHTML += `
+                            <tr>
+                                <td>${info[i].code}</td>
+                                <td>${info[i].name}</td>
+                            </tr>
+                        `;
+                        console.log(i);
+                        console.log(info[i].code);
+                        console.log(info[i].name);
+                    }
+                })
+                .catch(error => {
+                    console.log("Request failed", error);
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,118 @@
+/* 通用設定 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    overflow-x: hidden; /* 防止橫向滾動條 */
+}
+
+/* 表單和結果區塊的基本樣式 */
+#inputForm, #result {
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 70%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* 表單與結果的佈局在大螢幕上平均分佈 */
+@media (min-width: 1024px) {
+    #inputForm, #result {
+        width: 45%; /* 大螢幕時，表單與結果區塊各佔 45% 寬度 */
+        margin: 10px;
+    }
+}
+
+/* 小於 768px 螢幕寬度時的排版設定 */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column; /* 小螢幕時垂直排列 */
+        align-items: center; /* 居中顯示 */
+    }
+
+    #inputForm, #result {
+        max-width: 100%; /* 填滿整個螢幕寬度 */
+        padding: 10px; /* 縮小內邊距 */
+    }
+}
+
+/* 表單內部元素的樣式 */
+label {
+    font-weight: bold;
+}
+
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+
+/* 按鈕的樣式 */
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* 表格樣式 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow-x: auto; /* 加入橫向滾動條，避免小螢幕時內容溢出 */
+}
+
+/* 表格內容樣式 */
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    white-space: nowrap; /* 防止內容自動換行，確保表格不會溢出 */
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* 按鈕顏色樣式 */
+#saveButton {
+    background-color: rgb(219, 160, 33);
+}
+
+#clearButton {
+    background-color: rgb(245, 90, 90);
+}
+
+/* 讓表格在小螢幕可滾動 */
+#dataTable {
+    display: block;
+    overflow-x: auto; /* 加入橫向滾動條，避免表格在小螢幕上溢出 */
+    max-width: 100%;
+}
+

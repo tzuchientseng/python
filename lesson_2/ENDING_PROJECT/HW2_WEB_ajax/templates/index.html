@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <form id="inputForm">
+        <h2>資料</h2>
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>ID/月份</th>
+                    <th>利潤</th>
+                    <th>銷售量</th>
+                    <th>營業額</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <hr>
+        <label for="month">ID/月份:</label>
+        <input type="text" id="month" name="month" required><br><br>
+        <label for="profit">利潤:</label>
+        <input type="number" id="profit" name="profit" required><br><br>
+        <label for="sales">銷售量:</label>
+        <input type="number" id="sales" name="sales" required><br><br>
+
+        <button id="saveButton" type="button">存取</button>
+        <button id="clearButton" type="button">清除資料</button>
+
+    </form>
+    <div id="result">
+        <h2>計算結果</h2>
+        <div id="resultContainer"></div>
+        <button id="calculateButton1" type="button" disabled>API_1:商品定價建議</button>
+        <button id="calculateButton2" type="button" disabled>API_2:商品銷售量95信賴區間</button>
+        <button id="calculateButton3" type="button" disabled>API_3:商品銷售量98信賴區間</button>
+        <button id="calculateButton4" type="button" disabled>API_4:商品銷售量變異數95信賴區間</button>
+        <button id="calculateButton5" type="button" disabled>API_5:各月份的總營業額描述性統計</button>
+    </div>
+    <script src="../static/js/script.js" defer></script>
+</body>
+</html>
+

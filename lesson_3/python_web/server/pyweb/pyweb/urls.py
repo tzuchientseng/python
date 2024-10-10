@@ -19,13 +19,18 @@ from django.urls import path
 import first, views
 import home.views as home
 import gallery.views as gallery
+from session import views as session
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('first', first.html),
     path('second/', views.second),
     path('third/', views.third),
-    path('third/', views.index),
+    # path('third/', views.index),
     path('', home.html), # html 不是副檔名是方法
     path('gallery/', gallery.html),
+    path("login/", session.login),
+    path("logout/", session.logout),
+    path("login_process/", session.login_process),
+    path("check_session/", session.check_session),
 ]

@@ -33,4 +33,5 @@ urlpatterns = [
     path("logout/", session.logout),
     path("login_process/", session.login_process),
     path("check_session/", session.check_session),
+    path("reject/", session.reject),
 ]

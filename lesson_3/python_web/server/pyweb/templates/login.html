@@ -6,8 +6,8 @@
     <title>login</title>
 </head>
 <body>
-    <form action="/login_process/" method="post">{% csrf_token %}
-    <!-- <form action="/login_process/" method="POST"> -->
+    <!-- <form action="/login_process/" method="post">{% csrf_token %} -->
+    <form action="/login_process/" method="POST">
         <table>
             <tr>
                 <td colspan="2">Login</td>
@@ -21,7 +21,20 @@
                     <input type="password" name="userPassword"/>
                 </td>
             </table>    
-            <button type="submit">submit</button>
+            <button type="submit" onclick="hide_error()">submit</button>
     </form>
 </body>
+<script>
+/*
+    {% if login == "error" %}
+    document.getElementById("login_form").style.visibility="hidden";
+    document.getElementById("login_error").style.visibility="visible";
+    {% endif %}
+
+    function hide_error(){
+        document.getElementById("login_form").style.visibility="visible";
+        document.getElementById("login_error").style.visibility="hidden";
+    }
+*/
+</script>
 </html>

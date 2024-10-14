@@ -2,6 +2,9 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 import mysql.connector as mysql
 from Global import DB
+import time
+
+login_chances = 3
 
 # Create your views here.
 
@@ -9,7 +12,8 @@ def login(request):
     return render(request, "login.html")
 
 def logout(request):
-    pass
+    if 'userAccount' in request.session:
+        del request.session["userAccount"]
 
 def login_process(request):
     # userAccount = request.GET["userAccount"]
@@ -26,13 +30,35 @@ def login_process(request):
         database = DB.dbTable
     )
     cursor = conn.cursor()
-    cmd = "SELECT * from 會員資料"
+    cmd = f"SELECT * from 會員資料 where userAccount ='{userAccount}' and userPassword = '{userPassword}'"
     cursor.execute(cmd)
     rs = cursor.fetchall() # record set (list)
-    for row in rs:
-        print(row)
+    conn.close()
+    # for row in rs:
+        # print(row)
+    if len(rs) > 0:
+        # session 可以橫跨不同的網頁
+        # 不是全域店數 只有這條 session 的人可以看到
+        request.session['userAccount'] = userAccount
+        if 'currentPage' in request.session:
+            return redirect(request.session["currentPage"])
+        else:
+            return redirect('/')
+    else:
+        if "logintCount" not in request.session:
+            request.session["loginCount"] = 1
+        else:
+            request.session["lognCount"] += 1
+        time.sleep(3)
 
-    return HttpResponse()
+        if request.session['loginCount'] >= login_chances:
+            return redirect("/reject")
+        return render(request, 'login.html', context={"login": "error"})
+
+    # return HttpResponse()
 
 def check_session(request):
     pass
+
+def reject(request):
+    return redirect('/reject')

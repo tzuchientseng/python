@@ -3,13 +3,17 @@ from django.shortcuts import redirect, render
 import mysql.connector as mysql
 from Global import DB
 import time
+import json
 
 login_chances = 3
 
 # Create your views here.
 
 def login(request):
-    return render(request, "login.html")
+    if "loginCount" in request.session and request.session["loginCount"] >= login_chances:
+        return redirect("/reject") 
+    else:
+        return render(request, "login.html")
 
 def logout(request):
     if 'userAccount' in request.session:
@@ -18,6 +22,8 @@ def logout(request):
 def login_process(request):
     # userAccount = request.GET["userAccount"]
     # userPasword = request.GET["userPassword"]
+    if "loginCount" in request.session and request.session["loginCount"] >= login_chances:
+        return redirect("/reject") 
 
     userAccount = request.POST["userAccount"]
     userPassword = request.POST["userPassword"]
@@ -58,7 +64,12 @@ def login_process(request):
     # return HttpResponse()
 
 def check_session(request):
-    pass
+    session={"session":"ok"}
+
+    if "userAccount" not in request.session:
+        session["session"]="error"
+
+    return HttpResponse(json.dumps(session), content_type="application/json")
 
 def reject(request):
     return redirect('/reject')

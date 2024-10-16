@@ -10,10 +10,11 @@ login_chances = 3
 # Create your views here.
 
 def login(request):
+    info = DB.saveHistory(request, 'login')
     if "loginCount" in request.session and request.session["loginCount"] >= login_chances:
         return redirect("/reject") 
     else:
-        return render(request, "login.html")
+        return render(request, "login.html", {"Info" : info[1]})
 
 def logout(request):
     if 'userAccount' in request.session:

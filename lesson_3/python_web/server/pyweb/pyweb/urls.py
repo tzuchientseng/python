@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-import first, views
+# import first, views
 import home.views as home
 import gallery.views as gallery
 from session import views as session

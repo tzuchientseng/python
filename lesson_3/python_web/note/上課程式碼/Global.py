@@ -1,10 +1,11 @@
 from django.utils.safestring import mark_safe
 import requests
 from datetime import datetime
+import mysql.connector as mysal
 
 class DB():
     dbHost = "localhost"
-    dbAcount = "root"
+    dbAccount = "root"
     dbPassword = "open"
     dbTable = "cloud"
     
@@ -48,14 +49,38 @@ class DB():
         except requests.RequestException as e:
             print(f"Error making request to IP API: {e}")
 
-        # Database
-        # 儲存到資料庫
+        # Save to Database
         t = datetime.now()
-        # 資料庫時間為什麼要分為兩個欄位
-        # 方便日後，以日期查詢，效能快，分組快
-        # 若日期及時間同一欄，日後要分組很麻煩
         eventDay = t.strftime("%Y-%m-%d")
         eventTime = t.strftime("%H:%M:%S")
+
+        try:
+            # Establishing the database connection
+            conn = mysal.connect(
+                host=DB.dbHost,
+                user=DB.dbAccount,
+                password=DB.dbPassword,
+                database=DB.dbTable
+            )
+            cursor = conn.cursor()
+
+            # Insert the record into the database
+            # 建議後面要每行要加入空格
+            sql = """
+                INSERT INTO history (ip, eventDay, eventTime, page, userAccount, country, city, lng, lat)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """
+            user_account = request.user.username if request.user.is_authenticated else "Anonymous"
+            cursor.execute(sql, (ip, eventDay, eventTime, page, user_account, country, city, lng, lat))
+
+            # Commit the transaction
+            conn.commit() # flusk 強制從記憶體寫入資料庫
+
+        except mysal.Error as e:
+            print(f"Database error: {e}")
+        finally:
+            cursor.close()
+            conn.close()
 
         # Return the IP and formatted HTML with location data
         return ip, mark_safe(
@@ -66,10 +91,7 @@ class DB():
             """
         )
 
-
-
-
-
+# Previous Remarked Code:
 # from django.utils.safestring import mark_safe
 # import requests
 # class DB():
@@ -95,7 +117,6 @@ class DB():
 #                 <p class='info'>{ip}</p>
 #             """
 #         )
-
 
 #         # get 地區及經緯度
 #         city = ""
@@ -123,6 +144,8 @@ class DB():
 #             """
 #         )
 #         # 存入資料庫
+
+# SQL Table Creation Remark:
 """
 use cloud;
 CREATE TABLE `history` (

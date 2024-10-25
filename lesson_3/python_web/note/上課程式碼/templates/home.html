@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block content1 %}
+<style>
+    a{
+        text-decoration:none;
+    }
+    p{
+        margin:2px;
+
+    }
+    #div_master{
+        display: flex;
+	    flex-direction: row;
+	    height:100%;
+	    //width:1400;
+	    background-color:#f0f0f0
+    }
+    #div_left{
+        //flex-grow:1;
+        display: flex;
+	    flex-direction: column;
+        background-color: #f5f5f5;
+        width:680px;
+        height:100%;
+    }
+    #div_right{
+        display:flex;
+        flex-direction:column;
+        width:300px;
+        height:100%;
+        background-color:#a0fafa;
+        overflow:auto;
+    }
+</style>
+<div id="div_master">
+    <div id="div_left">
+        <div style="text-align:center;padding-top:10px;">
+            <img src="/static/images/mahaljsp.png" style="width:312;height:60;"/>
+        </div>
+        <div  style="text-align:center">
+            <span style="font-family: 'arial black', sans-serif; font-size: 16pt; color: #ff00ff; font-style: italic;">
+                Computer Programming
+            </span>
+            <br />
+            <span style="font-family: 'arial black', sans-serif; font-size: 18pt; color: #0000ff; font-style: italic;">
+                程式語言專區
+            </span>
+        </div>
+        <div>
+            <p style="padding-left:30px;">
+                <span style="color: #0000ff; font-size: 14pt; font-family: 'arial black', sans-serif;">
+                <em><strong>Mahal</strong></em>
+                <br />
+                </span>
+                <span style="color: #000000; font-size: 12pt;">
+                    <em><strong>&nbsp;&nbsp;馬哈, 南海語系, 尊貴的意思, 也是愛人的稱呼<br /></strong></em>
+                </span>
+                <span style="font-size: 14pt; font-family: 'arial black', sans-serif; color: #0000ff;">
+                    <em>Jsp</em>
+                    <br />
+                </span>
+                <span style="color: #000000; font-size: 12pt;">
+                <em><strong>&nbsp;&nbsp;Jakarta Server Page : Java語法的動態網頁技術標準</strong></em>
+                </span>
+            </p>
+            <p style="font-size: 16pt;font-style:italic;text-align:center; padding-left:30px;margin-top:50px;">
+                本站教學網站
+                <a href="http://mahaljsp.asuscomm.com" target="_blank" style="text-decoration:none;">http://mahaljsp.asuscomm.com</a>
+            </p>
+        </div>
+    </div>
+    <div id="div_right">
+        <img src="/static/images/thomas.jpg" style="margin:2px;"/>
+        <p style="padding-left:30px;">
+        站長：Thomas Wu</br>
+        </p>
+        <p style="padding-left:30px;">
+        經歷 :</br>
+        立向營造資訊顧問</br>
+        中興大學講師</br>
+        聯成電腦講師</br>
+        東元集團資深經理</br>
+        仁寶工業電腦副理</br>
+        英業達集團課長</br>
+        巨匠電腦講師</br>
+        聲寶高級工程師</br>
+        </p>
+        <p style="padding-left:30px;">
+        eMail：mahaljsp@gmail.com</br>
+        </p>
+        <p style="padding-left:30px;">
+            <a href="/schedule/">行程表</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

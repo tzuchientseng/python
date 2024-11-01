@@ -16,17 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-import first
 #import home.views as home
 from home import views as home
 from gallery import views as gallery
 from travel import views as travel
 from tools import views as tools
-from twstock import views as twstock
-from twgold import views as twgold
 from session import views as session
 from solar import views as solar
 from upload import views as upload
+from finance import views as ai
+from finance import twgold as twgold
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", home.html),#html 是函數名稱，不是副檔名
@@ -34,12 +34,20 @@ urlpatterns = [
 
     path("gallery/thumb/", gallery.thumb),
     path("gallery/thumb_doing/", gallery.thumb_doing),
-    path("gallery/listThumbDir", gallery.listThumbDir),
-
+    path("gallery/listThumbDir/", gallery.listThumbDir),
+    path("gallery/ai_detect/", gallery.ai_detect),
     path("travel/", travel.html),
+    path("travel_menu/", travel.map_menu),
+    path("travel_route/", travel.route),
+    path("travel_marker/", travel.marker),
+
+
     path("tools/", tools.html),
-    path("twstock/", twstock.html),
-    path("twgold/", twgold.html),
+
+    path("finance/ai/", ai.html),
+    path("finance/twgold/", twgold.html),
+    path("finance/stock_query/", ai.stock_query),
+
     path("login/", session.login),
     path("logout/", session.logout),
     path("login_process/", session.login_process),

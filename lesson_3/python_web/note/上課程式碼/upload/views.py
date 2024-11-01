@@ -17,6 +17,8 @@ def photo_form(request):
     #位於 upload 目錄的模板，不可以寫成 /upload/.....
     return render(request, "upload/photo_form.html",{"state":"first","info":info[1],"userAccount":G.userAccount(request)})
 def photo_process(request):
+    if 'userAccount' not in request.session:
+        return redirect("/login")    
     info = G.saveHistory(request, '上傳圖片成功')
     #上傳圖片，麻煩的地方
     if platform.system()=="Linux":
@@ -35,10 +37,10 @@ def photo_process(request):
         #os.mkdir(path)#不可以使用這個
         #上面的指令，假如只有 d:/upload, 是不能建立 d:/upload/2023/20231109的目錄
         os.makedirs(path)
-        img=request.FILES["userFile"]
-        fileName=os.path.join(path, str(img))
-        with open(fileName, 'wb') as file:
-            for data in img.chunks():
-                file.write(data)
+    img=request.FILES["userFile"]
+    fileName=os.path.join(path, str(img))
+    with open(fileName, 'wb') as file:
+        for data in img.chunks():
+            file.write(data)
 
     return render(request, "upload/photo_form.html",{"state":"ok","info":info[1],"userAccount":G.userAccount(request)})

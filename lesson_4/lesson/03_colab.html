@@ -1,0 +1,37 @@
+<!--
+Tensorflow 目前是 2.0版，但網路上大都是 1.0版
+自從2.1版開始，pip install tensorflow 會自動下載支援 GPU 及不支援GPU 的二個版本，
+可手動安裝 pip install tensorflow-gpu, 容量較小
+
+Terminal 無法安裝套件
+因為Terminal 改用 Windows Power shell作為輸出裝置，需把權限打開
+1. Windows Power Shell 按右鍵/系統管理員執行
+2. 執行 set-ExecutionPolicy remotesigned，然後按 A
+3. Pycharm 需關掉，再重新進入
+
+C語言的執行速度比 Python 快 100倍左右
+C 可以讓 LED 一秒閃 1000萬次
+JAVA 一秒約 30 萬次
+Python 一秒約 10 萬次
+Python只能使用 一顆 CPU, 所以將計算丟入 C函數庫，就可以啟動多核 cpu 來計算
+
+colab使用方式
+https://colab.research.google.com/?hl=zh-tw
+1. 新增筆記本，開始寫程式
+2. 執行階段/變更執行階段類型 : GPU
+
+colab 使用外部圖片
+1. 將圖片 copy 到雲端硬碟的 pictures目錄之下
+2. 個人雲端硬碟代號為 /MyDrive : 規定死的，不能變
+3. from google.colab import drive : 載入掛載程式
+4. drive.mount("/data") 將/MyDrive載在 /data目錄，此目錄會自已建立，名稱可以自已改
+    所以圖片的完整路徑為 pic_path="/data/MyDrive/pictures"
+5. 讀取圖片 : img=cv2.imread(f'{pic_path}/tiger.jpg', cv2.IMREAD_UNCHANGED)
+6. cv2.imshow(img) 會讓 jupyter當機
+    import google.colab.patches import cv2_imshow
+    cv2_imshow(img)
+
+讀取自訂的sdk
+1. 使用 Pycharm 撰寫 xxxSdk.py檔
+2. 將 xxxSdk.py copy 到雲端硬碟的 sdk目錄(名稱可以改)
+-->

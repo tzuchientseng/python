@@ -2,6 +2,7 @@
 # x=\frac{\pi}{4}   {\pi}=4x*4/7
 #面積 = pi/4, pi=面積*4
 #目前的任務 : 想辦法求出面積
+
 import time
 import numpy as np
 batch = 100_000_000
@@ -10,7 +11,8 @@ incircle = 0
 for e in range(epoch):
     t1 = time.time()
     points = [np.random.uniform(0,1,batch), np.random.uniform(0,1,batch)] # uniform 表均勻分布, normal 為標準常態
-    dist = np.sqrt(np.square(points[0]) + np.square(points[1]))
+    dist = np.sqrt(np.square(points[0]) + np.square(points[1])) # 與原點距離
+    # 以下寫法會太慢
     # count=0
     # for d in dist:
     #     if d <= 1:count += 1

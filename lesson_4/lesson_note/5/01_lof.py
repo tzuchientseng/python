@@ -30,10 +30,10 @@ print(inliners.shape)
 outliners = np.random.uniform(low=-6, high=6, size=(20,2))
 data = np.r_[inliners, outliners]
 
-x = data[:, 0]
-y = data[:, 1]
-plt.scatter(x, y, s=5, c='k') # k 表示黑色
-plt.show()
+# x = data[:, 0]
+# y = data[:, 1]
+# plt.scatter(x, y, s=5, c='k') # k 表示黑色
+# plt.show()
 
 # 底下產生離群因子偵測器
 # n_neighbors : k-distance(第 k 距離)，可以分群，預設值為 20
@@ -48,7 +48,7 @@ print(y_pred)
 # 負值愈大，離群的機會就愈大
 # print(lof.negative_outlier_factor_)
 r = np.ones(len(y_pred))
-r -= y_pred
+r -= y_pred # 1->0, -1->2
 print(r)
 x = data[:, 0]
 y = data[:, 1]
@@ -57,5 +57,6 @@ plt.scatter(x, y, s=3, c='k')
 # edgecolors : 外框線
 # facecolors : 填滿色
 # 切記 : c 不能指定
+# plt.scatter(x, y, s=r*20, c='r')
 plt.scatter(x, y, s=r*20, edgecolors='r', facecolors='none')
 plt.show()

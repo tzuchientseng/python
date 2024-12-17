@@ -4,26 +4,31 @@
 # 下載在專案後，解壓縮至此
 import os
 import random
-import shutil
-
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+import shutil # shell utilities 縮寫
 import numpy as np
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
+# 17 種花
 flowers = []
 # dirs = np.empty(0, dtype=object)
 dirs = []
+
+# 每種 80 張圖片
 with open('label.txt','r')as file:
     for line in file:
+        # print(line) # 發現有換行
         line = line.strip() # 去除 \n
-        # print(line)
-        cols = line.split()
-        s = int(cols[0])
-        e = int(cols[1])
+        cols = line.split() # 去除空格
+        s = int(cols[0]) # start
+        e = int(cols[1]) # end
         flower = cols[2]
         flowers.append(flower)
         # dirs = np.r_[dirs, [flower]*(e - s + 1)]
         # dirs += flowers * (e - s + 1)  # 此寫法會比上面陣列的效能高很多
-        dirs += [flower] * (e - s + 1)#此寫法會比上面陣列的效能高很多
+        dirs += [flower] * (e - s + 1) # 此寫法會比上面陣列的效能高很多
+
 dirs = np.array(dirs)
+
 for i, d in enumerate(dirs):
     print(i + 1, d)
 
@@ -47,6 +52,7 @@ for flower in flowers:
 datas = list(zip(os.listdir(in_path), dirs))
 random.seed(1)
 random.shuffle(datas)
+
 train = int(len(datas)*0.9)
 for file, flower in datas[:train]:
     source = os.path.join(in_path, file)

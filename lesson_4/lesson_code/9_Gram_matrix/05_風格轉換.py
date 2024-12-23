@@ -35,7 +35,7 @@ def deprocess_img(img):
 
 def run():
     for i in range(iterations):
-        loss, grads=compute_loss_grads(
+        loss, grads = compute_loss_grads(
             combination_img, base_img, style_img
         ) # 計算損失率及梯度下降
         optimizer.apply_gradients([(grads, combination_img)]) # 產生新的合成照

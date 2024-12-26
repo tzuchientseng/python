@@ -6,5 +6,5 @@ class ButtonHolder(QMainWindow):
         self.setWindowTitle("Button Holder App")
         button = QPushButton("Press Me!")
 
-        #Set up the button as our central widget
+        # Set up the button as our central widget
         self.setCentralWidget(button)

@@ -1,4 +1,4 @@
-#VERSION1 : Setting everything up in the global scope
+# VERSION1 : Setting everything up in the global scope
 """
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton
 
@@ -19,7 +19,7 @@ app.exec()
 """
 
 
-#VERSION2 : Setting up a separate class
+# VERSION2 : Setting up a separate class
 """
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton 
@@ -30,7 +30,7 @@ class ButtonHolder(QMainWindow):
         self.setWindowTitle("Button Holder App")
         button = QPushButton("Press Me!")
 
-        #Set up the button as our central widget
+        # Set up the button as our central widget
         self.setCentralWidget(button)
 
 

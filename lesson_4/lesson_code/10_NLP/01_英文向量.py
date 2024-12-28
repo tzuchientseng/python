@@ -93,7 +93,7 @@ print("將每篇文章拆開成單字陣列....")
 vocabularies = [chapter.split() for chapter in df.text]
 
 W2V_SIZE = 100
-W2V_WINDOW = 7 # 與前 7 及後7 個字產生關連
+W2V_WINDOW = 7 # 與前7及後7個字產生關連
 W2V_EPOCH = 32
 W2V_MIN_COUNT = 10 # 總出現次數小於10次就去除掉(去除錯字)
 
@@ -117,4 +117,4 @@ t2 = time.time()
 w2v_model.save("w2v_model")
 # 使用 colab 的人
 # w2v_model.save("/data/MyDrive/w2v_model")
-print(f"向量化時間 : {t2-t1}秒")
+print(f"向量化時間 : {t2 - t1}秒")

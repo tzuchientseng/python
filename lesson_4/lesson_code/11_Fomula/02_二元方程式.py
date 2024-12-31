@@ -34,5 +34,6 @@ layout = go.Layout(
 )
 
 # 創建圖形並顯示
+# 顯示在 http://127.0.0.1:4771/
 fig = go.Figure(data=data, layout=layout)
 fig.show()

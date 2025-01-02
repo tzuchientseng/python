@@ -41,9 +41,19 @@ nltk.download('stopwords')
 stop_words = stopwords.words("english")
 stemmer = SnowballStemmer("english")
 
+# 製作字典統計單字並編號
+decode_map = {0:"負面的", 2:"中立的", 4:"正面的"}
+# decode_map = {0:"Negative", 2:"Neutral", 4:"positive"}
+# decode_map={0:"罵民進黨", 2:"罵國民黨", 4:"罵蔡英文",6:"罵馬英久"}
+
+print("讀取csv檔案.....", end="")
+t1=time.time()
 df = pd.read_csv('training.1600000.processed.noemoticon.csv',
                  encoding="ISO-8859-1",
                  names=DATASET_COLUMNS)
+
+t2=time.time()
+print(f'花費時間 : {t2-t1:.4f}秒')
 
 """
 datas = []
@@ -51,20 +61,25 @@ for line in df.text:
     line = preprocess(line)
     date = append(line)
 """
+print("預處理字串.....", end="")
+t1 = time.time()
 df.text = df.text.apply(lambda x: preprocess(x))
-
-decode_map = {0:"負面的", 2:"中立的", 4:"正面的"}
-# decode_map = {0:"Negative", 2:"Neutral", 4:"positive"}
-# decode_map={0:"罵民進黨", 2:"罵國民黨", 4:"罵蔡英文",6:"罵馬英久"}
 df.target = df.target.apply(lambda x: decode_sentiment(x)) # 將數字轉換成文字(mapping)
 print('df:', df)
+t2 = time.time()
+print(f'花費時間 : {t2-t1:.4f}秒')
+
+#載入字典
+with open("eng_dictionary.pkl", 'rb') as file:
+    tok = pickle.load(file)
+vocab_size = len(tok.word_index)
 
 df_train, df_test, = train_test_split(df, test_size=0.2, random_state=1)
-# 製作字典統計單字並編號
 print("製作字典中....")
 t1 = time.time()
 toz = Tokenizer()
-toz.fit_on_texts(df_train.text)
+# toz.fit_on_texts(df_train.text)
+toz.fit_on_texts(df.text)
 vocab_size = len(toz.word_index) + 1 # 因為編號從 1 開始
 
 t2 = time.time()

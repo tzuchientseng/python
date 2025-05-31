@@ -1,0 +1,67 @@
+# ✅ Python 編譯檔
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+*.pyd
+
+# ✅ 虛擬環境
+venv/
+.venv/
+
+# ✅ Jupyter
+.ipynb_checkpoints/
+
+# ✅ 編輯器檔案
+.vscode/
+.idea/
+*.code-workspace
+
+# ✅ 模型與訓練輸出
+*.pt
+*.h5
+*.ckpt
+*.pb
+*.tflite
+*.onnx
+*.model
+**/checkpoint
+**/variables/
+**/saved_model/
+
+# ✅ 壓縮與資料集
+*.zip
+*.tar.gz
+*.tgz
+*.tar
+*.rar
+*.7z
+*.csv
+
+# ✅ 中間產物與輸出
+temp/
+output/
+runs/
+*.log
+*.txt
+*.jpg
+*.jpeg
+*.png
+
+# ✅ 特定資料夾與檔案（相對路徑）
+lesson_4/lesson_code/6_module_training/flower_photos/
+lesson_4/lesson_code/6_module_training/flower_photos.tgz
+lesson_4/lesson_code/7/flowers_17/
+lesson_4/lesson_code/7/test_images/
+lesson_4/lesson_code/7/train_images/
+lesson_4/lesson_code/9_Gram_matrix/output/
+lesson_4/lesson_code/10_NLP/train.csv
+lesson_4/lesson_code/10_NLP/train_tc.csv
+lesson_4/lesson_code/10_NLP/training.1600000.processed.noemoticon.csv
+lesson_4/lesson_code/10_NLP/sentiment_model/
+lesson_4/lesson_code/10_NLP/sentiment_model_sunny/
+lesson_4/lesson_code/14_yolo/yolov8n.pt
+lesson_4/lesson_code/14_yolo/yolov8x.pt
+lesson_4/yolov8n.pt
+lesson_4/yolov8x.pt

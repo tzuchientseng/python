@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <h2>Hello.js</h2> 
+    <p id="welcome">previous word</p>
+    <button onclick="document.getElementById('welcome').innerHTML='After Click'">click</button>
+
+    <script>
+        document.write("Hi, a123<b>Bold</b>")
+        function myfn() {
+            Swal.fire({
+                title: 'ALERT',
+                confirmButtonColor: '#ff9800'
+            })            
+        }
+        myfn();
+        myfn();
+        myfn();
+    </script>
+    <script>
+        function myfn() {
+            return Swal.fire({
+                title: 'ALERT',
+                confirmButtonColor: '#ff9800'
+            });
+        }
+
+        async function showAlerts() {
+            await myfn();
+            await myfn();
+            await myfn();
+        }
+
+        showAlerts();
+    </script>
+    <!-- sweatalert -->
+</body>
+</html>

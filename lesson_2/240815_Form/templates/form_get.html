@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form with GET Method</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <form action="/submit" method="GET">
+            <div class="mb-3">
+                <label for="userid" class="form-label">帳號編號:</label>
+                <input type="text" class="form-control" name="userid" value="B0001" readonly>
+            </div>
+            <!-- Add the rest of the fields here as shown previously -->
+            <button type="submit" class="btn btn-primary">提交</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+</head>
+<body>
+    <!-- <form action="/login_process/" method="post">{% csrf_token %} -->
+    <form action="/login_process/" method="POST">
+        <table>
+            <tr>
+                <td colspan="2">Login</td>
+            </tr>
+                <td width="50px">Account</td>
+                <td>
+                    <input type="text" name="userAccount"/>
+                </td>
+                <td width="50px">password</td>
+                <td>
+                    <input type="password" name="userPassword"/>
+                </td>
+            </table>    
+            <button type="submit" onclick="hide_error()">submit</button>
+    </form>
+</body>
+<script>
+/*
+    {% if login == "error" %}
+    document.getElementById("login_form").style.visibility="hidden";
+    document.getElementById("login_error").style.visibility="visible";
+    {% endif %}
+
+    function hide_error(){
+        document.getElementById("login_form").style.visibility="visible";
+        document.getElementById("login_error").style.visibility="hidden";
+    }
+*/
+</script>
+</html>

@@ -1,0 +1,14 @@
+# 忽略虛擬環境
+/server/nginx/
+/server/myenv/
+
+
+# 忽略 Python 快取檔案
+__pycache__/
+*.py[cod]
+
+# 忽略日誌檔案
+*.log
+
+# 忽略臨時檔案
+*.tmp

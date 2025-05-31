@@ -1,0 +1,131 @@
+<html>
+    <body>
+        <p id="box0"></p>
+        <p id="box1"></p>
+        <p id="box2"></p>
+        <p id="box3"></p>
+        <p id="box4"></p>
+        <p id="box5"></p>
+        <script>
+            mydata = {
+                "student": [{
+                    "firstName": "May",
+                    "lastName": "Jenny"
+                }, {
+                    "firstName": "Dev",
+                    "lastName": "Smith"
+                }]
+            };
+            console.log("目前是JSON" + mydata);
+            document.getElementById("box0").innerHTML = mydata.student[1].firstName;
+            document.getElementById("box1").innerHTML = mydata.student[1].lastName;
+            document.getElementById("box2").innerHTML = mydata["student"][2]["firstName"];
+            document.getElementById("box3").innerHTML = mydata["student"][2]["lastName"];
+            document.getElementById("box4").innerHTML = mydata.student[0]["firstName"];
+            document.getElementById("box5").innerHTML = mydata.student[0]["lastName"];
+        </script>
+    </body>
+</html>
+
+<html>
+    <body> 
+        資料: { "student": [ { "firstName":"May", "lastName":"Jenny" , "age":"23", "phone":"0912212445" }, { "firstName":"Dev", "lastName":"hen", "age":"24", "phone":"0912212445" }, { "firstName":"Tiffy", "lastName":"rosy", "age":"26", "phone":"0912212445" }, { "firstName":"PMay", "lastName":"PJenny" , "age":"27", "phone":"0912212445" }, { "firstName":"QDev", "lastName":"Qhen", "age":"26", "phone":"0912212445" }, { "firstName":"VTiffy", "lastName":"Vrosy", "age":"25", "phone":"0912212445" }, { "firstName":"MMay", "lastName":"MJenny" , "age":"22", "phone":"0912212445" }, { "firstName":"HDev", "lastName":"Hhen", "age":"21", "phone":"0912212445" }, { "firstName":"JKTiffy", "lastName":"Krosy", "age":"23", "phone":"0912212445" }, { "firstName":"MKTiffy", "lastName":"PProsy", "age":"23", "phone":"0912212445" } ] }
+        <p id="mytable"></p>
+        <script>
+            mydata = {
+                "student": [{
+                    "firstName": "May",
+                    "lastName": "Jenny",
+                    "age": "23",
+                    "phone": "0912212445"
+                }, {
+                    "firstName": "Dev",
+                    "lastName": "hen",
+                    "age": "24",
+                    "phone": "0912212445"
+                }, {
+                    "firstName": "Tiffy",
+                    "lastName": "rosy",
+                    "age": "26",
+                    "phone": "0912212445"
+                }, {
+                    "firstName": "PMay",
+                    "lastName": "PJenny",
+                    "age": "27",
+                    "phone": "0912212445"
+                }, {
+                    "firstName": "QDev",
+                    "lastName": "Qhen",
+                    "age": "26",
+                    "phone": "0912212445"
+                }, {
+                    "firstName": "VTiffy",
+                    "lastName": "Vrosy",
+                    "age": "25",
+                    "phone": "0912212445"
+                }, {
+                    "firstName": "MMay",
+                    "lastName": "MJenny",
+                    "age": "22",
+                    "phone": "0912212445"
+                }, {
+                    "firstName": "HDev",
+                    "lastName": "Hhen",
+                    "age": "21",
+                    "phone": "0912212445"
+                }, {
+                    "firstName": "JKTiffy",
+                    "lastName": "Krosy",
+                    "age": "23",
+                    "phone": "0912212445"
+                }, {
+                    "firstName": "QQTiffy",
+                    "lastName": "QQrosy",
+                    "age": "20",
+                    "phone": "0912232445"
+                }]
+            };
+            mLen = mydata["student"].length;
+            console.log(mLen);
+            text = "<table border='1'><tr><td>編號</td><td>姓</td><td>名</td><td>姓&名</td><td>年紀</td><td>手機</td></tr>"; 
+            for (i = 0; i < mLen; i++) {
+                console.log(mydata.student[i].firstName);
+                text += "<tr>"+
+                "<td>"+(i+1)+"</td>"+
+                "<td>"+mydata.student[i].firstName+"</td>"+
+                "<td>"+mydata.student[i].lastName+"</td>"+
+                "<td>"+mydata.student[i].firstName+" & "+mydata.student[i].lastName+"</td>"+
+                "<td>"+mydata.student[i].age+"</td>"+
+                "<td>"+mydata.student[i].phone+"</td>"+
+                "</tr>";
+            }
+            text += "</table>";
+            document.getElementById("mytable").innerHTML = text;
+        </script>
+    </body>
+</html>
+
+<html>
+    <body>
+        <p id="demo"></p>
+        <p id="demo2"></p>
+        <script>
+            var text = '{"student":[' + '{"firstName":"May","lastName":"Jenny" },' + '{"firstName":"Dev","lastName":"hen" },' + '{"firstName":"Tiffy","lastName":"rosy" }]}';
+            console.log("目前是字串" + text);
+            obj = JSON.parse(text);
+            console.log("物件" + obj);
+            mLen = obj.student.length; //讀取student有幾筆
+            mhtml = "<table border=1>"+
+            "<tr>"+
+            "<td>編號</td>"+
+            "<td colspan=3>學生表</td>"+
+            "</tr>"+
+            "<tr><td>1</td><td>姓</td><td>名</td><td>姓名</td></tr>"+
+            "<tr><td>2</td><td>"+obj.student[0].firstName+"</td><td>"+obj.student[0].lastName+"</td><td>"+obj.student[0].firstName+obj.student[0].lastName+"</td></tr>"+
+            "<tr><td>3</td><td>"+obj.student[1].firstName+"</td><td>"+obj.student[1].lastName+"</td><td>"+obj.student[1].firstName+obj.student[1].lastName+"</td></tr>"+
+            "<tr><td>4</td><td>"+obj.student[2].firstName+"</td><td>"+obj.student[2].lastName+"</td><td>"+obj.student[2].firstName+obj.student[2].lastName+"</td></tr>"+
+            "</table>";
+            document.getElementById("demo").innerHTML = mhtml;
+        </script>
+    </body>
+</html>

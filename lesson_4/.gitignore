@@ -1,0 +1,20 @@
+# 忽略虛擬環境
+/venv/
+
+# 忽略檔案
+lesson_code/6_module_training/flower_photos/
+lesson_code/6_module_training/flower_photos.tgz
+lesson_code/7/flowers_17
+lesson_code/7/test_images
+lesson_code/7/train_images
+lesson_code/9_Gram_matrix/output
+lesson_code/10_NLP/train.csv
+lesson_code/10_NLP/train_tc.csv
+lesson_code/10_NLP/training.1600000.processed.noemoticon.csv
+lesson_code/10_NLP/sentiment_model/
+lesson_code/10_NLP/sentiment_model_sunny/
+
+
+# 忽略所有 PyTorch 模型檔案
+*.pt
+

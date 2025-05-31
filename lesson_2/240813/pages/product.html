@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <h3 class="h1 text-center mt-5"></h3>
+    <div class="container mt-5">
+        <form action="test.py" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="username">用戶名：</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">電子郵件：</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="comments">備註：</label>
+                <textarea id="comments" name="comments" rows="4" class="form-control"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="file-upload">選擇文件上傳：</label>
+                <input type="file" id="file-upload" name="uploaded_file" class="form-control-file" accept=".txt,.pdf,.doc,.docx,.jpg,.png">
+            </div>
+            
+            <button class="btn-success" type="submit" class="btn btn-primary">提交</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

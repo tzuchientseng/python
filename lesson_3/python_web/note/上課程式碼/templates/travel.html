@@ -1,0 +1,437 @@
+{% extends 'base.html' %}
+{% block content1 %}
+<style>
+    table{
+        border: 1px solid #0000ff;
+        border-collapse:collapse;
+        margin-top:10px;
+    }
+    tr{
+        border:1px solid #000000;
+    }
+    td{
+        border:1px solid #000000;
+        padding:1px;
+    }
+    a{
+        text-decoration:none;
+    }
+
+    #travel_master{
+        width:100%;
+        height:100%;
+        display:flex;
+    }
+    #travel_left{
+        display:flex;
+        flex-direction:column;
+        width:200px;
+        height:100%;
+        background-color:#f0f0ff;
+    }
+    #travel_right{
+        flex-grow:1;
+        background-color: #f0f000;
+        position:relative;
+        width:100%;
+        height:100%;
+    }
+    #mapMenu{
+        border-width:1px;
+        border-style:solid;
+        border-color:#808080;
+        width:100%;
+        height:100%;
+        background-color: #e0e0ff;
+        overflow:auto;
+    }
+    .mapMenuSingle{
+        width:92%;
+        border:1px solid;
+        height:22px;
+        margin-left:1px;
+        padding-left:10px;
+        padding-top:2px;
+    }
+
+    #travel_mapstyle{
+        position:absolute;
+        top:0px;
+        right:0px;
+        background-color: #d0d0ff;
+        opacity: 0.8;
+        padding:10px;
+        font-family: Open Sans, sans-serif;
+    }
+    #map{
+        height:100%;
+    }
+    .marker1 {
+      background-image: url('/static/images/icon1.png');
+      background-size: cover;
+      width: 15px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .marker2 {
+      background-image: url('/static/images/icon2.png');
+      background-size: cover;
+      width: 15px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .marker3 {
+      background-image: url('/static/images/icon3.png');
+      background-size: cover;
+      width: 15px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .photo{
+        width:600px;
+        height: 337px;
+    }
+
+
+</style>
+<div id="travel_master">
+    <div id="travel_left">
+        <div style="width:100%;display:flex;">
+            <div style="width:33%;text-align:center">
+                <img src="/static/images/icon1.png" style="width:15px;height:30px;"/>
+            </div>
+            <div style="width:33%;text-align:center">
+                <img src="/static/images/icon2.png" style="width:15px;height:30px;"/>
+            </div>
+            <div style="width:33%;text-align:center">
+                <img src="/static/images/icon3.png" style="width:15px;height:30px;"/>
+            </div>                        
+        </div>
+        <div style="width:100%;display:flex;">
+            <div style="width:33%;text-align:center">
+                風景
+            </div>
+            <div style="width:33%;text-align:center">
+                人物
+            </div>
+            <div style="width:33%;text-align:center">
+                其它
+            </div>                        
+        </div>
+        <div style="width:100%;display:flex;background-color:#c0c0ff;">
+            <div style="padding-left:5px;">
+                日期
+            </div>
+            <div style="padding-left:5px;">
+                <input id="mapMonth" name="mapMonth", type="month" value="{{currentMonth}}" onchange="loadMenu();" style="height:25px;"/>
+            </div>
+        </div>
+        <div id="mapMenu"></div>
+    </div>
+    <div id="travel_right">
+        <div id="map"></div>
+        <div id="travel_mapstyle">
+            <input id="streets-v12" type="radio" name="rtoggle" value="streets" checked="checked">
+            <label for="streets-v12">streets</label>
+            <input id="satellite-streets-v12" type="radio" name="rtoggle" value="satellite">
+            <label for="satellite-streets-v12">satellite</label>
+            <input id="outdoors-v12" type="radio" name="rtoggle" value="outdoors">
+            <label for="outdoors-v12">outdoors</label>
+            <input id="light-v11" type="radio" name="rtoggle" value="light">
+            <label for="light-v11">light</label>
+            <input id="dark-v11" type="radio" name="rtoggle" value="dark">
+            <label for="dark-v11">dark</label>
+            <img src="/static/images/fullscreen.png" width="20" height="20" id="img_screen" onclick="fullscreen()"/>
+        </div>
+    </div>
+</div>
+<script>
+    first=true;
+    lat=24.0661281;
+    lng=120.5326433; 
+    zoom=14;
+    fs=false;//fullscreen
+    const dashArraySequence = [[0, 4, 3],[0.5, 4, 2.5],[1, 4, 2],[1.5, 4, 1.5],[2, 4, 1],[2.5, 4, 0.5],[3, 4, 0],[0, 0.5, 3, 3.5],[0, 1, 3, 3],[0, 1.5, 3, 2.5],[0, 2, 3, 2],[0, 2.5, 3, 1.5],[0, 3, 3, 1],[0, 3.5, 3, 0.5]];
+    route_layers=0;
+    animations=[];
+    marker_list=[];
+    
+    //底下的參數為計算彈出式視窗的位置
+    const markerHeight = 40;
+    const markerRadius = 20;
+    const linearOffset = 25;
+    const popupOffsets = {
+        'top': [0, 0],
+        'top-left': [0, 0],
+        'top-right': [0, 0],
+        'bottom': [0, -markerHeight],
+        'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+        'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+        'left': [markerRadius, (markerHeight - markerRadius) * -1],
+        'right': [-markerRadius, (markerHeight - markerRadius) * -1]
+    };
+
+
+    initMap();
+    loadMenu();
+
+    layerList = document.getElementById('travel_mapstyle');
+    inputs = layerList.getElementsByTagName('input');
+    for (input of inputs){
+        input.onclick = (layer) => {
+            map.setStyle('mapbox://styles/mapbox/'+layer.target.id);
+        };
+    }
+
+    function initMap(){
+        mapboxgl.accessToken='pk.eyJ1IjoibWFoYWxqc3AiLCJhIjoiY2xwbDM4a3VyMDBwYTJrbzRiaGZycnE1diJ9.9AAetO48VzumPALzTSOtqw';
+        map=new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v12',
+            center: [lng, lat],
+            zoom: zoom,
+        });
+    }
+
+    function fullscreen(){
+        fs = !fs;
+        div=document.getElementById("travel_right");
+        img_screen=document.getElementById("img_screen");
+        if (fs){
+            div.style.position = 'absolute';
+            div.style.top=0;
+            div.style.left=0;
+            img_screen.src='/static/images/screen.png';
+            launchFullscreen(document.documentElement);
+        }
+        else{
+            div.style.position='relative';
+            img_screen.src='/static/images/fullscreen.png';
+            exitFullscreen();
+        }
+        map.resize();
+    }
+
+    function loadMenu(){
+        div=document.getElementById("mapMenu");
+        div.innerHtml="";
+        mapMonth=document.getElementById("mapMonth").value;
+        url="/travel_menu?currentMonth="+mapMonth;
+        conn1=connector(url);
+        conn1.onreadystatechange=function(){
+            if (conn1.readyState==4 && conn1.status==200){
+                div.innerHTML=conn1.responseText;
+            }
+        };
+        conn1.send();
+    }
+
+    function loadRoute(currentDay){
+        first=true;
+        url="/travel_route/?currentDay="+currentDay;
+        conn2=connector(url);
+        conn2.onreadystatechange=function(){
+            if (conn2.readyState==4 && conn2.status==200){
+               routes=JSON.parse(conn2.responseText)["routes"];
+                //移除先前的動畫, 官網沒說明
+                for (i=0;i<animations.length;i++){
+                    cancelAnimationFrame(animations[i]);
+                }
+                //底下幾行，共開發了快三天
+                for (i=0;i<route_layers;i++){
+                    map.removeLayer(i+"-background");
+                    map.removeSource(i+"-background");//不移除 Source，下次無法再次畫入
+                    map.removeLayer(i+"-dashed");
+                    map.removeSource(i+"-dashed");
+                }
+                route_layers=routes.length;
+                for (i=0;i<route_layers;i++){
+                    draw_route(routes[i],i);
+                }
+                
+                /*
+                map.jumpTo({
+                    center:[routes[route_layers-1][0][0], routes[route_layers-1][0][1]],
+                    essential:true
+                });
+                */                
+
+                map.flyTo({
+                    center:[routes[route_layers-1][0][0], routes[route_layers-1][0][1]],
+                    essential:true
+                });
+                loadMarker(currentDay);
+
+            }
+        };
+        conn2.send();
+    }
+
+    function loadMarker(currentDay){
+        
+        url="/travel_marker?currentDay="+currentDay;
+        conn3=connector(url);
+		conn3.onreadystatechange=function(){
+			if (conn3.readyState==4 && conn3.status==200){
+			    for (i=0;i<marker_list.length;i++){
+			        marker_list[i].remove();
+			    }
+			    marker_list=[];
+				markers=JSON.parse(conn3.responseText)["markers"];
+                for (i=0;i<markers.length;i++){
+                    addMarker(markers[i]);
+                }
+			}
+		};
+
+        conn3.send();
+    }
+
+    function addMarker(marker){
+        alert("ok");
+        const el=document.createElement('div');
+        if(marker[4]=='風景'){
+            el.className = 'marker1';
+        }
+        else if (marker[4]=='人物'){
+            el.className = 'marker2';
+        }
+        else{
+            el.className = 'marker3';
+        }
+        m=new mapboxgl.Marker(el,{offset:[0,-15]})
+            .setLngLat([marker[0], marker[1]])
+            .setPopup(
+                new mapboxgl.Popup({offset:popupOffsets, className:"div_marker"})
+                    .setHTML(
+                    `
+                        <table>
+                            <tr>
+                                <td width='50px'>日期</td>
+                                <td width='40%'>${marker[3]}</td>
+                                <td width='50px'>類別</td>
+                                <td width='40%'>${marker[4]}</td>
+                            </tr>
+                            <tr>
+                                <td width='50px'>經度</td>
+                                <td width='40%'>${marker[0]}</td>
+                                <td width='50px'>緯度</td>
+                                <td width='40%'>${marker[1]}</td>
+                            </tr>
+                            <tr>
+                                <td width='50px'>地址</td>
+                                <td colspan='3'>${marker[2]}</td>
+                            </tr>
+                            <tr>
+                                <td colspan='4'>
+                                    <!--
+                                        <a href="/travel_photo/${marker[5]}" target="_blank">
+                                            <img src="/travel_photo/${marker[5]}" class="photo"/>
+                                        </a>
+                                    -->
+                                    圖片顯示位置
+                                </td>
+                            </tr>
+                        </table>
+                    `
+                    )
+                    .setMaxWidth("650px")
+            )
+        m.addTo(map);
+        marker_list.push(m);
+    }
+
+    function draw_route(coords, i){
+        map.addLayer({
+            id: i+"-background",
+            "type": "line",
+            "source": {
+                "type": "geojson",
+                "data": {
+                    "type": "Feature",
+                    "properties": {},
+                    "geometry": {
+                        "type": "LineString",
+                        "coordinates": coords
+                    }
+                }
+            },
+            paint:{
+                "line-color":"blue",
+                'line-width':6,
+                'line-opacity': 0.5
+            },
+        });
+
+        //虛線動畫
+        map.addLayer({
+            id: i+"-dashed",
+            "type":"line",
+            "source": {
+                "type": "geojson",
+                "data": {
+                    "type": "Feature",
+                    "properties": {},
+                    "geometry": {
+                        "type": "LineString",
+                        "coordinates": coords
+                    }
+                }
+            },
+            paint:{
+                "line-color":"#ffff00",
+                "line-width":3,
+                "line-dasharray":[0,4,3]
+            }
+        });
+
+        let step=0;
+        animateDashArray(0);
+        function animateDashArray(timestamp){
+            newStep = parseInt((timestamp/50) % dashArraySequence.length);
+            if (newStep != step){
+                map.setPaintProperty(
+                    i+"-dashed",
+                    "line-dasharray",
+                    dashArraySequence[step]
+                );
+                step=newStep;
+            }
+            timer=requestAnimationFrame(animateDashArray);
+            animations.push(timer);
+        }
+    }
+
+    function launchFullscreen(element) {
+        if(element.requestFullscreen) {
+            element.requestFullscreen();
+        }
+        else if(element.mozRequestFullScreen) {
+            element.mozRequestFullScreen();
+        }
+        else if(element.msRequestFullscreen){
+            element.msRequestFullscreen();
+        }
+        else if(element.webkitRequestFullscreen) {
+            element.webkitRequestFullScreen();
+        }
+    }
+    function exitFullscreen() {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+        else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+        else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        }
+        else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        }
+    }
+</script>
+{% endblock %}

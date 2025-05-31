@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+<h1>作業一</h1>
+    <table border="1" align="center" width="400px" height="300px" cellpadding="10" cellspacing="1" style="background-color: yellow; text-align: center;">
+        <tr>
+            <td colspan="4" style="height: 50px;">產品資訊</td>
+            <td rowspan="3" style="width: 80px; font-weight: bold; color: red;">總價</td>
+        </tr>
+        <tr>
+            <td>產品1</td>
+            <td>產品2</td>
+            <td>產品3</td>
+            <td>產品4</td>
+        </tr>
+        <tr>
+            <td><img src="image1.png" alt="產品1" width="50" height="50"><br>$100</td>
+            <td><img src="image2.png" alt="產品2" width="50" height="50"><br>$50</td>
+            <td><img src="image3.png" alt="產品3" width="50" height="50"><br>$30</td>
+            <td><img src="image4.png" alt="產品4" width="50" height="50"><br>$100</td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+            <td style="font-weight: bold;">$280元</td>
+        </tr>
+    </table>   
+<hr style="border: 1px dashed #917f7f;">
+<h1>作業一(CSS 方式)</h1>
+    <table class="product-table">
+        <tr>
+            <th colspan="4">產品資訊</th>
+            <th rowspan="3" class="total-price-header">總價</th>
+        </tr>
+        <tr>
+            <td>產品1</td>
+            <td>產品2</td>
+            <td>產品3</td>
+            <td>產品4</td>
+        </tr>
+        <tr>
+            <td><img src="image1.png" alt="產品1"><br>$100</td>
+            <td><img src="image2.png" alt="產品2"><br>$50</td>
+            <td><img src="image3.png" alt="產品3"><br>$30</td>
+            <td><img src="image4.png" alt="產品4"><br>$100</td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+            <td class="total-price">$280元</td>
+        </tr>
+    </table>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+    }
+
+    .product-table {
+        width: 400px;
+        border-collapse: collapse;
+        margin: 50px auto;
+        background-color: yellow;
+        text-align: center;
+    }
+
+    .product-table th, .product-table td {
+        border: 1px solid #000;
+        padding: 10px;
+    }
+
+    .product-table th {
+        background-color: yellow;
+        height: 50px;
+    }
+
+    .product-table td img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 5px;
+    }
+
+    .total-price-header {
+        font-weight: bold;
+        color: red;
+        width: 80px;
+    }
+
+    .total-price {
+        font-weight: bold;
+        color: red;
+    }
+    </style>
+<br>
+<br>
+<br>
+</body>
+</html>
